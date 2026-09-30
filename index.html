@@ -1,0 +1,2412 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ShopRobuxLuaDao</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            #33205c 0%,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            #162e68 0%,
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #080b18,
+            #10152d 50%,
+            #090b16
+        );
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: rgba(8, 10, 24, 0.88);
+
+    backdrop-filter: blur(15px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.logo span {
+    color: #ff3d81;
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+}
+
+nav button {
+    border: none;
+
+    background: transparent;
+
+    color: #ddd;
+
+    padding: 11px 17px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.25s;
+}
+
+nav button:hover {
+    background: rgba(255,255,255,0.08);
+    color: white;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    width: 100%;
+    overflow: hidden;
+}
+
+.section {
+    width: 86%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 80px 0;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 9px 17px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,61,129,0.12);
+
+    border:
+        1px solid rgba(255,61,129,0.35);
+
+    color: #ff77a7;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 8vw, 90px);
+
+    line-height: 0.95;
+
+    font-weight: 950;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            #ff3d81,
+            #a855f7,
+            #4f8cff
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    color: #b9bdd0;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 15px 25px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    font-weight: 800;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.primary-btn {
+    background:
+        linear-gradient(
+            135deg,
+            #ff347d,
+            #a63dff
+        );
+
+    color: white;
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,52,125,0.25);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(255,52,125,0.4);
+}
+
+.secondary-btn {
+    background:
+        rgba(255,255,255,0.07);
+
+    color: white;
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+}
+
+.secondary-btn:hover {
+    background:
+        rgba(255,255,255,0.12);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: 38px;
+
+    margin-bottom: 12px;
+}
+
+.section-title p {
+    color: #999fb5;
+}
+
+
+/* =========================================================
+   ROBUX CARDS
+========================================================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.card {
+    position: relative;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,0.055);
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter: blur(15px);
+
+    transition: 0.3s;
+
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    background: #ff3d81;
+
+    filter: blur(90px);
+
+    opacity: 0.12;
+
+    right: -80px;
+    top: -80px;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(255,61,129,0.5);
+}
+
+.card-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff3d81,
+            #783dff
+        );
+
+    border-radius: 18px;
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+}
+
+.card h3 {
+    font-size: 27px;
+
+    margin-bottom: 10px;
+}
+
+.robux {
+    font-size: 16px;
+
+    color: #b8bdd0;
+
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 29px;
+
+    font-weight: 900;
+
+    margin-bottom: 25px;
+}
+
+.buy-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #111;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.buy-btn:hover {
+    background: #ff3d81;
+
+    color: white;
+}
+
+
+/* =========================================================
+   PURCHASE FORM
+========================================================= */
+
+.purchase-box {
+    display: none;
+
+    max-width: 550px;
+
+    margin: 45px auto 0;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    animation:
+        appear 0.35s ease;
+}
+
+.purchase-box.active {
+    display: block;
+}
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.purchase-box h3 {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.selected-package {
+    color: #ff6d9e;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #c7cada;
+}
+
+.roblox-input {
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    background:
+        rgba(0,0,0,0.3);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 16px;
+
+    margin-bottom: 10px;
+}
+
+.roblox-input:focus {
+    border-color: #ff3d81;
+}
+
+.error-message {
+    display: none;
+
+    color: #ff5c78;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.confirm-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff347d,
+            #963cff
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+.cancel-btn {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: #aaa;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   LUCKY WHEEL
+========================================================= */
+
+.wheel-section {
+    text-align: center;
+}
+
+.wheel-wrapper {
+    width: 390px;
+
+    max-width: 90vw;
+
+    margin: 35px auto;
+
+    position: relative;
+}
+
+.wheel {
+    width: 360px;
+    height: 360px;
+
+    max-width: 90vw;
+    max-height: 90vw;
+
+    border-radius: 50%;
+
+    margin: auto;
+
+    border:
+        12px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+        0 0 0 5px
+        rgba(255,255,255,0.04),
+
+        0 20px 60px
+        rgba(0,0,0,0.4);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform
+        4s cubic-bezier(
+            0.12,
+            0.8,
+            0.18,
+            1
+        );
+
+    background:
+        conic-gradient(
+            #ff3d81 0deg 72deg,
+            #773dff 72deg 144deg,
+            #258cff 144deg 216deg,
+            #00b894 216deg 288deg,
+            #f6a623 288deg 360deg
+        );
+}
+
+.wheel-number {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 50%;
+    height: 50%;
+
+    transform-origin: 0% 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: 900;
+
+    font-size: 20px;
+}
+
+.n1 {
+    transform:
+        rotate(36deg)
+        translateY(-115px)
+        rotate(-36deg);
+}
+
+.n2 {
+    transform:
+        rotate(108deg)
+        translateY(-115px)
+        rotate(-108deg);
+}
+
+.n3 {
+    transform:
+        rotate(180deg)
+        translateY(-115px)
+        rotate(-180deg);
+}
+
+.n4 {
+    transform:
+        rotate(252deg)
+        translateY(-115px)
+        rotate(-252deg);
+}
+
+.n5 {
+    transform:
+        rotate(324deg)
+        translateY(-115px)
+        rotate(-324deg);
+}
+
+.pointer {
+    position: absolute;
+
+    top: -12px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        18px solid transparent;
+
+    border-right:
+        18px solid transparent;
+
+    border-top:
+        35px solid white;
+
+    z-index: 5;
+
+    filter:
+        drop-shadow(
+            0 4px 5px
+            rgba(0,0,0,0.4)
+        );
+}
+
+.wheel-center {
+    position: absolute;
+
+    width: 65px;
+    height: 65px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: white;
+
+    border:
+        8px solid #15182b;
+
+    z-index: 4;
+}
+
+.spin-btn {
+    margin-top: 20px;
+
+    padding: 15px 35px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff3d81,
+            #7d3cff
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+.spin-btn:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+.spin-result {
+    margin-top: 20px;
+
+    min-height: 30px;
+
+    color: #ff77a7;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.info {
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.info h3 {
+    margin-bottom: 10px;
+}
+
+.info p {
+    color: #9da3b8;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top:
+        1px solid rgba(255,255,255,0.08);
+
+    padding: 40px 7%;
+
+    text-align: center;
+
+    color: #777d92;
+
+    font-size: 14px;
+}
+
+.demo-warning {
+    margin: 20px auto 0;
+
+    max-width: 700px;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,174,0,0.08);
+
+    border:
+        1px solid rgba(255,174,0,0.2);
+
+    color: #d6b875;
+}
+
+
+/* =========================================================
+   404 ERROR
+========================================================= */
+
+.error-page {
+    display: none;
+
+    min-height:
+        calc(100vh - 75px);
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.error-page.active {
+    display: flex;
+}
+
+.error-content {
+    max-width: 700px;
+}
+
+.error-code {
+    font-size:
+        clamp(100px, 20vw, 220px);
+
+    font-weight: 950;
+
+    line-height: 0.8;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff3d81,
+            #7b3cff
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    letter-spacing: -12px;
+}
+
+.error-content h2 {
+    font-size: 32px;
+
+    margin:
+        35px 0 15px;
+}
+
+.error-content p {
+    color: #969caf;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    padding: 15px 20px;
+
+    border-radius: 12px;
+
+    background: #171b31;
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    color: white;
+
+    transform:
+        translateY(100px);
+
+    opacity: 0;
+
+    transition: 0.3s;
+
+    z-index: 2000;
+}
+
+.toast.show {
+    transform:
+        translateY(0);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 0 4%;
+    }
+
+    nav button {
+        padding: 8px;
+
+        font-size: 13px;
+    }
+
+    .section {
+        width: 92%;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    header {
+        height: auto;
+
+        min-height: 70px;
+
+        padding: 15px;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .hero {
+        min-height: 570px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .wheel {
+        width: 310px;
+        height: 310px;
+    }
+
+    .error-code {
+        letter-spacing: -6px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header id="header">
+
+    <div
+        class="logo"
+        onclick="goHome()">
+
+        Shop<span>Robux</span>LuaDao
+
+    </div>
+
+
+    <nav>
+
+        <button
+            onclick="goHome()">
+
+            Trang chủ
+
+        </button>
+
+
+        <button
+            onclick="scrollToShop()">
+
+            Mua Robux
+
+        </button>
+
+
+        <button
+            onclick="scrollToWheel()">
+
+            Vòng quay
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================================
+     WEBSITE
+========================================================= -->
+
+<main id="website">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero section">
+
+        <div class="hero-content">
+
+            <div class="badge">
+
+                WEBSITE DEMO / GIẢ LẬP
+
+            </div>
+
+
+            <h1>
+
+                Shop<span>Robux</span>LuaDao
+
+            </h1>
+
+
+            <p>
+
+                Khu vực mô phỏng mua Robux với giao diện
+                hiện đại, lựa chọn gói Robux và vòng quay
+                may mắn.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-btn"
+                    onclick="scrollToShop()">
+
+                    Xem gói Robux
+
+                </button>
+
+
+                <button
+                    class="secondary-btn"
+                    onclick="scrollToWheel()">
+
+                    Vòng quay may mắn
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SHOP
+    ====================================================== -->
+
+    <section
+        class="section"
+        id="shop">
+
+
+        <div class="section-title">
+
+            <h2>
+
+                Gói Robux
+
+            </h2>
+
+
+            <p>
+
+                Chọn một gói để bắt đầu.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="cards">
+
+
+            <!-- 55 ROBUX -->
+
+            <div class="card">
+
+                <div class="card-icon">
+
+                    R$
+
+                </div>
+
+
+                <h3>
+
+                    55 Robux
+
+                </h3>
+
+
+                <div class="robux">
+
+                    Gói cơ bản
+
+                </div>
+
+
+                <div class="price">
+
+                    15.000đ
+
+                </div>
+
+
+                <button
+                    class="buy-btn"
+                    onclick="
+                        openPurchase(
+                            55,
+                            '15.000đ'
+                        )
+                    ">
+
+                    Mua Robux
+
+                </button>
+
+            </div>
+
+
+
+            <!-- 145 ROBUX -->
+
+            <div class="card">
+
+                <div class="card-icon">
+
+                    R$
+
+                </div>
+
+
+                <h3>
+
+                    145 Robux
+
+                </h3>
+
+
+                <div class="robux">
+
+                    Gói tiêu chuẩn
+
+                </div>
+
+
+                <div class="price">
+
+                    50.000đ
+
+                </div>
+
+
+                <button
+                    class="buy-btn"
+                    onclick="
+                        openPurchase(
+                            145,
+                            '50.000đ'
+                        )
+                    ">
+
+                    Mua Robux
+
+                </button>
+
+            </div>
+
+
+
+            <!-- 300 ROBUX -->
+
+            <div class="card">
+
+                <div class="card-icon">
+
+                    R$
+
+                </div>
+
+
+                <h3>
+
+                    300 Robux
+
+                </h3>
+
+
+                <div class="robux">
+
+                    Gói lớn
+
+                </div>
+
+
+                <div class="price">
+
+                    100.000đ
+
+                </div>
+
+
+                <button
+                    class="buy-btn"
+                    onclick="
+                        openPurchase(
+                            300,
+                            '100.000đ'
+                        )
+                    ">
+
+                    Mua Robux
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+        <div
+            class="purchase-box"
+            id="purchaseBox">
+
+
+            <h3>
+
+                Thông tin nhận Robux
+
+            </h3>
+
+
+            <div
+                class="selected-package"
+                id="selectedPackage">
+
+            </div>
+
+
+            <label
+                class="input-label">
+
+                Tên Roblox
+
+            </label>
+
+
+            <input
+                id="robloxName"
+                class="roblox-input"
+                type="text"
+                placeholder="Nhập tên Roblox của bạn..."
+                autocomplete="off"
+            >
+
+
+            <div
+                id="inputError"
+                class="error-message">
+
+                Vui lòng nhập tên Roblox!
+
+            </div>
+
+
+            <button
+                class="confirm-btn"
+                id="confirmButton"
+                onclick="confirmPurchase()">
+
+                MUA ROBUX
+
+            </button>
+
+
+            <button
+                class="cancel-btn"
+                onclick="closePurchase()">
+
+                Hủy
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         VÒNG QUAY
+    ====================================================== -->
+
+    <section
+        class="section wheel-section"
+        id="wheelSection">
+
+
+        <div class="section-title">
+
+            <h2>
+
+                Vòng quay may mắn
+
+            </h2>
+
+
+            <p>
+
+                Bạn chỉ được quay một lần.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="wheel-wrapper">
+
+
+            <div class="pointer"></div>
+
+
+            <div
+                class="wheel"
+                id="wheel">
+
+
+                <!-- Ô 1 -->
+
+                <div
+                    class="wheel-number n1">
+
+                    50 R$
+
+                </div>
+
+
+                <!-- Ô 2 -->
+
+                <div
+                    class="wheel-number n2">
+
+                    9999 R$
+
+                </div>
+
+
+                <!-- Ô 3 -->
+
+                <div
+                    class="wheel-number n3">
+
+                    125 R$
+
+                </div>
+
+
+                <!-- Ô 4 -->
+
+                <div
+                    class="wheel-number n4">
+
+                    2500 R$
+
+                </div>
+
+
+                <!-- Ô 5 -->
+
+                <div
+                    class="wheel-number n5">
+
+                    777 R$
+
+                </div>
+
+
+                <div
+                    class="wheel-center">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <button
+            class="spin-btn"
+            id="spinBtn"
+            onclick="spinWheel()">
+
+            QUAY MAY MẮN
+
+        </button>
+
+
+        <div
+            class="spin-result"
+            id="spinResult">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INFO
+    ====================================================== -->
+
+    <section class="section">
+
+
+        <div class="section-title">
+
+            <h2>
+
+                Thông tin
+
+            </h2>
+
+
+            <p>
+
+                Website được tạo bằng HTML, CSS và JavaScript.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="info-grid">
+
+
+            <div class="info">
+
+                <h3>
+
+                    ⚡ Nhanh
+
+                </h3>
+
+
+                <p>
+
+                    Website chạy trực tiếp trên trình duyệt
+                    mà không cần thư viện bên ngoài.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="info">
+
+                <h3>
+
+                    🎮 Roblox
+
+                </h3>
+
+
+                <p>
+
+                    Khi chọn gói Robux, bạn sẽ được yêu cầu
+                    nhập tên Roblox.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="info">
+
+                <h3>
+
+                    🎁 May mắn
+
+                </h3>
+
+
+                <p>
+
+                    Vòng quay có 5 ô phần thưởng và chỉ
+                    cho phép quay một lần.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     404 ERROR
+========================================================= -->
+
+<section
+    class="error-page"
+    id="errorPage">
+
+
+    <div class="error-content">
+
+
+        <div class="error-code">
+
+            404
+
+        </div>
+
+
+        <h2>
+
+            ERROR - PAGE NOT FOUND
+
+        </h2>
+
+
+        <p>
+
+            Không thể hoàn tất yêu cầu.
+            Trang xử lý hiện không tồn tại hoặc đã bị
+            tạm dừng.
+
+        </p>
+
+
+        <button
+            class="primary-btn"
+            onclick="returnHomeFromError()">
+
+            ← Quay về trang chủ
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <strong>
+
+        ShopRobuxLuaDao
+
+    </strong>
+
+
+    <p style="margin-top:10px;">
+
+        Website demo được tạo bằng HTML + CSS + JavaScript.
+
+    </p>
+
+
+    <div class="demo-warning">
+
+        Đây là website mô phỏng, không phải cửa hàng Roblox
+        chính thức và không thực hiện giao dịch Robux thật.
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast">
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   BIẾN
+========================================================= */
+
+let selectedRobux = 0;
+
+let selectedPrice = "";
+
+let hasSpun = false;
+
+let wheelRotation = 0;
+
+
+/* =========================================================
+   CUỘN ĐẾN SHOP
+========================================================= */
+
+function scrollToShop() {
+
+    document
+        .getElementById("shop")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =========================================================
+   CUỘN ĐẾN VÒNG QUAY
+========================================================= */
+
+function scrollToWheel() {
+
+    document
+        .getElementById("wheelSection")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =========================================================
+   TRANG CHỦ
+========================================================= */
+
+function goHome() {
+
+    document
+        .getElementById("website")
+        .style.display = "block";
+
+
+    document
+        .getElementById("errorPage")
+        .classList.remove("active");
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   MỞ FORM MUA ROBUX
+========================================================= */
+
+function openPurchase(
+    robux,
+    price
+) {
+
+    selectedRobux = robux;
+
+    selectedPrice = price;
+
+
+    const box =
+        document.getElementById(
+            "purchaseBox"
+        );
+
+
+    const packageText =
+        document.getElementById(
+            "selectedPackage"
+        );
+
+
+    const input =
+        document.getElementById(
+            "robloxName"
+        );
+
+
+    const error =
+        document.getElementById(
+            "inputError"
+        );
+
+
+    const button =
+        document.getElementById(
+            "confirmButton"
+        );
+
+
+    packageText.textContent =
+        "Bạn đang chọn " +
+        robux +
+        " Robux - " +
+        price;
+
+
+    input.value = "";
+
+
+    error.classList.remove(
+        "show"
+    );
+
+
+    button.textContent =
+        "MUA ROBUX";
+
+
+    box.classList.add(
+        "active"
+    );
+
+
+    box.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "center"
+
+    });
+
+
+    setTimeout(function() {
+
+        input.focus();
+
+    }, 250);
+
+}
+
+
+/* =========================================================
+   ĐÓNG FORM
+========================================================= */
+
+function closePurchase() {
+
+    document
+        .getElementById(
+            "purchaseBox"
+        )
+        .classList.remove(
+            "active"
+        );
+
+}
+
+
+/* =========================================================
+   MUA ROBUX
+========================================================= */
+
+function confirmPurchase() {
+
+    const input =
+        document.getElementById(
+            "robloxName"
+        );
+
+
+    const error =
+        document.getElementById(
+            "inputError"
+        );
+
+
+    const username =
+        input.value.trim();
+
+
+    /* Không có tên */
+
+    if (username === "") {
+
+        error.textContent =
+            "Vui lòng nhập tên Roblox trước khi mua!";
+
+
+        error.classList.add(
+            "show"
+        );
+
+
+        input.focus();
+
+
+        return;
+
+    }
+
+
+    /* Đã nhập tên */
+
+    error.classList.remove(
+        "show"
+    );
+
+
+    showToast(
+        "Đang xử lý..."
+    );
+
+
+    setTimeout(function() {
+
+        show404();
+
+    }, 700);
+
+}
+
+
+/* =========================================================
+   HIỆN 404
+========================================================= */
+
+function show404() {
+
+    document
+        .getElementById(
+            "website"
+        )
+        .style.display = "none";
+
+
+    document
+        .getElementById(
+            "errorPage"
+        )
+        .classList.add(
+            "active"
+        );
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   QUAY LẠI TRANG CHỦ
+========================================================= */
+
+function returnHomeFromError() {
+
+    document
+        .getElementById(
+            "errorPage"
+        )
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById(
+            "website"
+        )
+        .style.display = "block";
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(function() {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        }, 2500);
+
+}
+
+
+/* =========================================================
+   VÒNG QUAY
+========================================================= */
+
+function spinWheel() {
+
+    const button =
+        document.getElementById(
+            "spinBtn"
+        );
+
+
+    const wheel =
+        document.getElementById(
+            "wheel"
+        );
+
+
+    const result =
+        document.getElementById(
+            "spinResult"
+        );
+
+
+    /* Không cho quay lần 2 */
+
+    if (hasSpun) {
+
+        showToast(
+            "Bạn đã sử dụng lượt quay!"
+        );
+
+
+        return;
+
+    }
+
+
+    hasSpun = true;
+
+
+    button.disabled = true;
+
+
+    button.textContent =
+        "ĐANG QUAY...";
+
+
+    /* =====================================================
+       5 PHẦN THƯỞNG
+    ===================================================== */
+
+    const rewards = [
+
+        50,
+
+        9999,
+
+        125,
+
+        2500,
+
+        777
+
+    ];
+
+
+    /* Chọn ngẫu nhiên */
+
+    const selectedIndex =
+        Math.floor(
+            Math.random() *
+            rewards.length
+        );
+
+
+    const reward =
+        rewards[selectedIndex];
+
+
+    /* =====================================================
+       TÍNH GÓC QUAY
+    ===================================================== */
+
+    const segmentCenter =
+        selectedIndex * 72 + 36;
+
+
+    const extraRounds =
+        5 * 360;
+
+
+    const targetAngle =
+        extraRounds +
+        (360 - segmentCenter);
+
+
+    wheelRotation +=
+        targetAngle;
+
+
+    wheel.style.transform =
+        "rotate(" +
+        wheelRotation +
+        "deg)";
+
+
+    /* =====================================================
+       SAU KHI QUAY XONG
+    ===================================================== */
+
+    setTimeout(function() {
+
+
+        /* Chúc mừng */
+
+        result.innerHTML =
+            "🎉 Chúc mừng! Bạn nhận được " +
+            "<strong>" +
+            reward +
+            " Robux!</strong>";
+
+
+        button.textContent =
+            "ĐÃ QUAY XONG";
+
+
+        showToast(
+            "🎉 Chúc mừng! Bạn nhận được " +
+            reward +
+            " Robux!"
+        );
+
+
+        /* Lưu phần thưởng */
+
+        selectedRobux =
+            reward;
+
+
+        /* Hiện form */
+
+        showRewardForm();
+
+
+    }, 4200);
+
+}
+
+
+/* =========================================================
+   FORM NHẬN ROBUX SAU KHI QUAY
+========================================================= */
+
+function showRewardForm() {
+
+    const box =
+        document.getElementById(
+            "purchaseBox"
+        );
+
+
+    const packageText =
+        document.getElementById(
+            "selectedPackage"
+        );
+
+
+    const input =
+        document.getElementById(
+            "robloxName"
+        );
+
+
+    const error =
+        document.getElementById(
+            "inputError"
+        );
+
+
+    const button =
+        document.getElementById(
+            "confirmButton"
+        );
+
+
+    /* Hiển thị phần thưởng */
+
+    packageText.textContent =
+        "🎁 Phần thưởng của bạn: " +
+        selectedRobux +
+        " Robux";
+
+
+    input.value = "";
+
+
+    error.classList.remove(
+        "show"
+    );
+
+
+    /* Đổi nút thành nhận */
+
+    button.textContent =
+        "NHẬN ROBUX";
+
+
+    box.classList.add(
+        "active"
+    );
+
+
+    box.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "center"
+
+    });
+
+
+    setTimeout(function() {
+
+        input.focus();
+
+    }, 400);
+
+}
+
+
+/* =========================================================
+   XỬ LÝ NÚT MUA / NHẬN ROBUX
+========================================================= */
+
+document
+    .getElementById(
+        "confirmButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+
+            const input =
+                document.getElementById(
+                    "robloxName"
+                );
+
+
+            const error =
+                document.getElementById(
+                    "inputError"
+                );
+
+
+            const username =
+                input.value.trim();
+
+
+            /* Kiểm tra tên */
+
+            if (username === "") {
+
+                error.textContent =
+                    "Vui lòng nhập tên Roblox trước khi nhận Robux!";
+
+
+                error.classList.add(
+                    "show"
+                );
+
+
+                input.focus();
+
+
+                return;
+
+            }
+
+
+            /* Đã nhập */
+
+            error.classList.remove(
+                "show"
+            );
+
+
+            showToast(
+                "Đang xử lý..."
+            );
+
+
+            setTimeout(function() {
+
+                show404();
+
+            }, 700);
+
+        }
+    );
+
+
+/* =========================================================
+   ENTER
+========================================================= */
+
+document
+    .getElementById(
+        "robloxName"
+    )
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                document
+                    .getElementById(
+                        "confirmButton"
+                    )
+                    .click();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+document
+    .querySelector(
+        ".logo"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            goHome();
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
+```
