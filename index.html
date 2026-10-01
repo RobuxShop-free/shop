@@ -52,8 +52,6 @@ nav a:hover {
     color: #00ff88;
 }
 
-/* HERO */
-
 .hero {
     text-align: center;
     padding: 70px 20px;
@@ -86,7 +84,9 @@ nav a:hover {
     font-size: 30px;
 }
 
-/* PRODUCTS */
+/* =========================
+   SẢN PHẨM
+========================= */
 
 .packages {
     display: grid;
@@ -140,7 +140,9 @@ button {
     transform: scale(1.04);
 }
 
-/* PANELS */
+/* =========================
+   FORM
+========================= */
 
 .panel {
     display: none;
@@ -217,7 +219,9 @@ button {
     color: white;
 }
 
-/* WHEEL */
+/* =========================
+   VÒNG QUAY
+========================= */
 
 .wheel-section {
     margin-top: 70px;
@@ -291,7 +295,9 @@ button {
     min-height: 30px;
 }
 
-/* INFO */
+/* =========================
+   THÔNG TIN
+========================= */
 
 .info {
     display: grid;
@@ -317,7 +323,62 @@ button {
     line-height: 1.5;
 }
 
-/* 404 */
+/* =========================
+   THÀNH CÔNG
+========================= */
+
+.success-page {
+    display: none;
+    min-height: 80vh;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.success-box {
+    max-width: 650px;
+    margin: auto;
+    background: #191d27;
+    border: 1px solid #00ff88;
+    border-radius: 20px;
+    padding: 50px 30px;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    background: #00ff88;
+    color: #07130d;
+    font-size: 55px;
+    font-weight: bold;
+    line-height: 80px;
+}
+
+.success-box h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+    color: #00ff88;
+}
+
+.success-box h2 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.success-box p {
+    color: #aeb4c0;
+    margin-bottom: 30px;
+}
+
+.home-btn {
+    background: #00ff88;
+    color: #07130d;
+}
+
+/* =========================
+   404
+========================= */
 
 .error-page {
     display: none;
@@ -341,12 +402,9 @@ button {
     margin-bottom: 30px;
 }
 
-.home-btn {
-    background: #00ff88;
-    color: #07130d;
-}
-
-/* TOAST */
+/* =========================
+   TOAST
+========================= */
 
 .toast {
     position: fixed;
@@ -360,7 +418,9 @@ button {
     z-index: 200;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     margin-top: 70px;
@@ -371,9 +431,12 @@ footer {
     line-height: 1.7;
 }
 
-/* RESPONSIVE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width: 800px) {
+
     .packages,
     .info {
         grid-template-columns: 1fr;
@@ -459,7 +522,9 @@ footer {
             <button
                 class="buy-btn"
                 onclick="openPurchase(55, '15.000đ')">
+
                 MUA ROBUX
+
             </button>
 
         </div>
@@ -480,7 +545,9 @@ footer {
             <button
                 class="buy-btn"
                 onclick="openPurchase(145, '50.000đ')">
+
                 MUA ROBUX
+
             </button>
 
         </div>
@@ -501,7 +568,9 @@ footer {
             <button
                 class="buy-btn"
                 onclick="openPurchase(300, '100.000đ')">
+
                 MUA ROBUX
+
             </button>
 
         </div>
@@ -509,7 +578,7 @@ footer {
     </div>
 
 
-    <!-- FORM MUA ROBUX -->
+    <!-- FORM ROBUX -->
 
     <div class="panel" id="purchasePanel">
 
@@ -764,7 +833,7 @@ footer {
     </div>
 
 
-    <!-- TÀI KHOẢN NGẪU NHIÊN -->
+    <!-- TÀI KHOẢN -->
 
     <div
         class="panel"
@@ -918,7 +987,7 @@ footer {
 
 
 <!-- =========================
-     INFO
+     THÔNG TIN
 ========================= -->
 
 <section class="container">
@@ -945,7 +1014,7 @@ footer {
             </h3>
 
             <p>
-                Quy trình thanh toán được thiết kế đơn giản.
+                Quy trình thanh toán đơn giản.
             </p>
 
         </div>
@@ -971,6 +1040,45 @@ footer {
 
 
 <!-- =========================
+     TRANG THÀNH CÔNG ROBUX
+========================= -->
+
+<section
+    class="success-page"
+    id="successPage">
+
+    <div class="success-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>
+            Chúc mừng!
+        </h1>
+
+        <h2 id="successRobux">
+            Bạn đã nhận được 0 Robux
+        </h2>
+
+        <p>
+            Giao dịch đã hoàn tất.
+        </p>
+
+        <button
+            class="home-btn"
+            onclick="goHome()">
+
+            QUAY VỀ TRANG CHỦ
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
      404
 ========================= -->
 
@@ -989,7 +1097,6 @@ footer {
     <p>
         Trang bạn đang tìm kiếm không tồn tại hoặc đã bị lỗi.
     </p>
-
 
     <button
         class="home-btn"
@@ -1037,11 +1144,9 @@ function openPurchase(robux, price) {
     selectedRobux = robux;
     selectedPrice = price;
 
-
     document.getElementById(
         "purchasePanel"
     ).style.display = "block";
-
 
     document.getElementById(
         "selectedPackage"
@@ -1051,11 +1156,9 @@ function openPurchase(robux, price) {
         " Robux - " +
         price;
 
-
     document.getElementById(
         "formError"
     ).style.display = "none";
-
 
     document.getElementById(
         "purchasePanel"
@@ -1067,7 +1170,7 @@ function openPurchase(robux, price) {
 
 
 /* =========================
-   ĐÓNG MUA ROBUX
+   ĐÓNG FORM ROBUX
 ========================= */
 
 function closePurchase() {
@@ -1075,7 +1178,6 @@ function closePurchase() {
     document.getElementById(
         "purchasePanel"
     ).style.display = "none";
-
 
     document.getElementById(
         "robloxName"
@@ -1097,7 +1199,6 @@ function closePurchase() {
         "cardCVV"
     ).value = "";
 
-
     document.getElementById(
         "formError"
     ).style.display = "none";
@@ -1115,30 +1216,25 @@ function confirmPurchase() {
             "robloxName"
         ).value.trim();
 
-
     const cardNumber =
         document.getElementById(
             "cardNumber"
         ).value.trim();
-
 
     const cardName =
         document.getElementById(
             "cardName"
         ).value.trim();
 
-
     const cardExpiry =
         document.getElementById(
             "cardExpiry"
         ).value.trim();
 
-
     const cardCVV =
         document.getElementById(
             "cardCVV"
         ).value.trim();
-
 
     const error =
         document.getElementById(
@@ -1209,7 +1305,6 @@ function confirmPurchase() {
     error.style.display =
         "none";
 
-
     showToast(
         "Đang xử lý thanh toán..."
     );
@@ -1217,14 +1312,16 @@ function confirmPurchase() {
 
     setTimeout(function() {
 
-        show404();
+        showRobuxSuccess(
+            selectedRobux
+        );
 
     }, 1200);
 }
 
 
 /* =========================
-   FC MOBILE - MỞ
+   FC MOBILE
 ========================= */
 
 function openFCMobilePurchase() {
@@ -1233,7 +1330,6 @@ function openFCMobilePurchase() {
         "fcPanel"
     ).style.display = "block";
 
-
     document.getElementById(
         "fcPanel"
     ).scrollIntoView({
@@ -1241,23 +1337,17 @@ function openFCMobilePurchase() {
         block: "center"
     });
 
-
     document.getElementById(
         "fcError"
     ).style.display = "none";
 }
 
 
-/* =========================
-   FC MOBILE - ĐÓNG
-========================= */
-
 function closeFCMobile() {
 
     document.getElementById(
         "fcPanel"
     ).style.display = "none";
-
 
     document.getElementById(
         "fcCardName"
@@ -1275,7 +1365,6 @@ function closeFCMobile() {
         "fcCardCVV"
     ).value = "";
 
-
     document.getElementById(
         "fcError"
     ).style.display = "none";
@@ -1291,9 +1380,7 @@ function randomString(length) {
     const chars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-
     let result = "";
-
 
     for (
         let i = 0;
@@ -1310,7 +1397,6 @@ function randomString(length) {
 
     }
 
-
     return result;
 }
 
@@ -1326,24 +1412,20 @@ function buyFCMobile() {
             "fcCardName"
         ).value.trim();
 
-
     const cardNumber =
         document.getElementById(
             "fcCardNumber"
         ).value.trim();
-
 
     const cardExpiry =
         document.getElementById(
             "fcCardExpiry"
         ).value.trim();
 
-
     const cardCVV =
         document.getElementById(
             "fcCardCVV"
         ).value.trim();
-
 
     const error =
         document.getElementById(
@@ -1402,7 +1484,6 @@ function buyFCMobile() {
     error.style.display =
         "none";
 
-
     showToast(
         "Đang xử lý..."
     );
@@ -1413,7 +1494,6 @@ function buyFCMobile() {
         const username =
             "FCM_" +
             randomString(8);
-
 
         const password =
             randomString(12);
@@ -1476,7 +1556,6 @@ function spinWheel() {
 
 
     wheelSpun = true;
-
 
     document.getElementById(
         "spinButton"
@@ -1595,7 +1674,6 @@ function claimReward() {
     error.style.display =
         "none";
 
-
     showToast(
         "Đang xử lý..."
     );
@@ -1603,17 +1681,19 @@ function claimReward() {
 
     setTimeout(function() {
 
-        show404();
+        showRobuxSuccess(
+            wheelReward
+        );
 
     }, 1000);
 }
 
 
 /* =========================
-   404
+   HIỆN THÔNG BÁO NHẬN ROBUX
 ========================= */
 
-function show404() {
+function showRobuxSuccess(amount) {
 
     document.getElementById(
         "mainPage"
@@ -1624,7 +1704,21 @@ function show404() {
     document.getElementById(
         "errorPage"
     ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "successPage"
+    ).style.display =
         "block";
+
+
+    document.getElementById(
+        "successRobux"
+    ).innerText =
+        "Bạn đã nhận được " +
+        amount +
+        " Robux";
 
 
     window.scrollTo({
@@ -1644,6 +1738,12 @@ function goHome() {
         "mainPage"
     ).style.display =
         "block";
+
+
+    document.getElementById(
+        "successPage"
+    ).style.display =
+        "none";
 
 
     document.getElementById(
