@@ -84,10 +84,6 @@ nav a:hover {
     font-size: 30px;
 }
 
-/* =========================
-   SẢN PHẨM
-========================= */
-
 .packages {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -100,7 +96,7 @@ nav a:hover {
     border-radius: 18px;
     padding: 30px;
     text-align: center;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .card:hover {
@@ -127,7 +123,7 @@ button {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    transition: .2s;
 }
 
 .buy-btn {
@@ -139,10 +135,6 @@ button {
     background: #00d970;
     transform: scale(1.04);
 }
-
-/* =========================
-   FORM
-========================= */
 
 .panel {
     display: none;
@@ -219,9 +211,7 @@ button {
     color: white;
 }
 
-/* =========================
-   VÒNG QUAY
-========================= */
+/* VÒNG QUAY */
 
 .wheel-section {
     margin-top: 70px;
@@ -283,7 +273,7 @@ button {
 }
 
 .spin-btn:disabled {
-    opacity: 0.5;
+    opacity: .5;
     cursor: not-allowed;
 }
 
@@ -295,9 +285,13 @@ button {
     min-height: 30px;
 }
 
-/* =========================
-   THÔNG TIN
-========================= */
+.spin-count {
+    margin-top: 20px;
+    color: #00ff88;
+    font-weight: bold;
+}
+
+/* THÔNG TIN */
 
 .info {
     display: grid;
@@ -323,9 +317,7 @@ button {
     line-height: 1.5;
 }
 
-/* =========================
-   THÀNH CÔNG
-========================= */
+/* THÀNH CÔNG */
 
 .success-page {
     display: none;
@@ -376,9 +368,7 @@ button {
     color: #07130d;
 }
 
-/* =========================
-   404
-========================= */
+/* 404 */
 
 .error-page {
     display: none;
@@ -402,9 +392,7 @@ button {
     margin-bottom: 30px;
 }
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
 .toast {
     position: fixed;
@@ -418,10 +406,6 @@ button {
     z-index: 200;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 footer {
     margin-top: 70px;
     padding: 30px;
@@ -431,11 +415,7 @@ footer {
     line-height: 1.7;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width: 800px) {
+@media(max-width:800px) {
 
     .packages,
     .info {
@@ -476,11 +456,9 @@ footer {
 </header>
 
 
-<!-- =========================
-     TRANG CHỦ
-========================= -->
-
 <main id="mainPage">
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -495,9 +473,7 @@ footer {
 </section>
 
 
-<!-- =========================
-     ROBUX
-========================= -->
+<!-- ROBUX -->
 
 <section class="container" id="packages">
 
@@ -521,7 +497,7 @@ footer {
 
             <button
                 class="buy-btn"
-                onclick="openPurchase(55, '15.000đ')">
+                onclick="openPurchase(55,'15.000đ')">
 
                 MUA ROBUX
 
@@ -544,7 +520,7 @@ footer {
 
             <button
                 class="buy-btn"
-                onclick="openPurchase(145, '50.000đ')">
+                onclick="openPurchase(145,'50.000đ')">
 
                 MUA ROBUX
 
@@ -567,7 +543,7 @@ footer {
 
             <button
                 class="buy-btn"
-                onclick="openPurchase(300, '100.000đ')">
+                onclick="openPurchase(300,'100.000đ')">
 
                 MUA ROBUX
 
@@ -578,7 +554,7 @@ footer {
     </div>
 
 
-    <!-- FORM ROBUX -->
+    <!-- FORM MUA ROBUX -->
 
     <div class="panel" id="purchasePanel">
 
@@ -590,7 +566,6 @@ footer {
             class="selected-package"
             id="selectedPackage">
         </div>
-
 
         <div class="input-group">
 
@@ -605,7 +580,6 @@ footer {
 
         </div>
 
-
         <div class="input-group">
 
             <label>
@@ -618,7 +592,6 @@ footer {
                 placeholder="Nhập số bất kỳ">
 
         </div>
-
 
         <div class="input-group">
 
@@ -633,7 +606,6 @@ footer {
 
         </div>
 
-
         <div class="input-group">
 
             <label>
@@ -646,7 +618,6 @@ footer {
                 placeholder="MM/YY">
 
         </div>
-
 
         <div class="input-group">
 
@@ -661,12 +632,10 @@ footer {
 
         </div>
 
-
         <div
             class="error"
             id="formError">
         </div>
-
 
         <button
             class="confirm-btn"
@@ -675,7 +644,6 @@ footer {
             THANH TOÁN
 
         </button>
-
 
         <button
             class="cancel-btn"
@@ -690,9 +658,7 @@ footer {
 </section>
 
 
-<!-- =========================
-     FC MOBILE
-========================= -->
+<!-- FC MOBILE -->
 
 <section
     class="container"
@@ -701,7 +667,6 @@ footer {
     <h2 class="section-title">
         Tài khoản FC Mobile
     </h2>
-
 
     <div class="packages">
 
@@ -742,14 +707,9 @@ footer {
             Mua tài khoản FC Mobile
         </h2>
 
-
         <div class="selected-package">
-
-            FC Mobile OVR 125 -
-            36.000đ
-
+            FC Mobile OVR 125 - 36.000đ
         </div>
-
 
         <div class="input-group">
 
@@ -764,7 +724,6 @@ footer {
 
         </div>
 
-
         <div class="input-group">
 
             <label>
@@ -777,7 +736,6 @@ footer {
                 placeholder="Nhập số bất kỳ">
 
         </div>
-
 
         <div class="input-group">
 
@@ -792,7 +750,6 @@ footer {
 
         </div>
 
-
         <div class="input-group">
 
             <label>
@@ -806,12 +763,10 @@ footer {
 
         </div>
 
-
         <div
             class="error"
             id="fcError">
         </div>
-
 
         <button
             class="confirm-btn"
@@ -820,7 +775,6 @@ footer {
             MUA ACC
 
         </button>
-
 
         <button
             class="cancel-btn"
@@ -833,7 +787,7 @@ footer {
     </div>
 
 
-    <!-- TÀI KHOẢN -->
+    <!-- ACCOUNT -->
 
     <div
         class="panel"
@@ -843,13 +797,9 @@ footer {
             🎉 Mua tài khoản thành công!
         </h2>
 
-
         <div class="selected-package">
-
             Tài khoản FC Mobile OVR 125
-
         </div>
-
 
         <div class="input-group">
 
@@ -863,7 +813,6 @@ footer {
                 readonly>
 
         </div>
-
 
         <div class="input-group">
 
@@ -883,9 +832,7 @@ footer {
 </section>
 
 
-<!-- =========================
-     VÒNG QUAY
-========================= -->
+<!-- VÒNG QUAY -->
 
 <section
     class="container wheel-section"
@@ -895,22 +842,18 @@ footer {
         Vòng quay Robux
     </h2>
 
-
     <div class="wheel-box">
 
         <p>
-            Mỗi lượt chỉ được quay một lần.
+            Bạn có 1 lượt quay ban đầu.
         </p>
 
-
         <div class="pointer"></div>
-
 
         <div
             class="wheel"
             id="wheel">
         </div>
-
 
         <button
             class="spin-btn"
@@ -921,6 +864,23 @@ footer {
 
         </button>
 
+        <br><br>
+
+        <button
+            class="buy-btn"
+            onclick="openSpinPurchase()">
+
+            🎟️ MUA 1 LƯỢT QUAY - 20.000đ
+
+        </button>
+
+        <div
+            class="spin-count"
+            id="spinCount">
+
+            Bạn còn 1 lượt quay
+
+        </div>
 
         <div
             class="result"
@@ -929,12 +889,102 @@ footer {
 
     </div>
 
+
+    <!-- FORM MUA LƯỢT QUAY -->
+
+    <div
+        class="panel"
+        id="spinPurchasePanel">
+
+        <h2>
+            Mua lượt quay
+        </h2>
+
+        <div class="selected-package">
+
+            1 lượt quay - 20.000đ
+
+        </div>
+
+        <div class="input-group">
+
+            <label>
+                Tên chủ thẻ
+            </label>
+
+            <input
+                type="text"
+                id="spinCardName"
+                placeholder="Nhập tên bất kỳ">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>
+                Số thẻ
+            </label>
+
+            <input
+                type="text"
+                id="spinCardNumber"
+                placeholder="Nhập số bất kỳ">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>
+                Ngày hết hạn
+            </label>
+
+            <input
+                type="text"
+                id="spinCardExpiry"
+                placeholder="MM/YY">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>
+                CVV
+            </label>
+
+            <input
+                type="text"
+                id="spinCardCVV"
+                placeholder="Nhập số bất kỳ">
+
+        </div>
+
+        <div
+            class="error"
+            id="spinPaymentError">
+        </div>
+
+        <button
+            class="confirm-btn"
+            onclick="buySpin()">
+
+            THANH TOÁN 20.000đ
+
+        </button>
+
+        <button
+            class="cancel-btn"
+            onclick="closeSpinPurchase()">
+
+            HỦY
+
+        </button>
+
+    </div>
+
 </section>
 
 
-<!-- =========================
-     FORM NHẬN ROBUX
-========================= -->
+<!-- NHẬN ROBUX -->
 
 <section class="container">
 
@@ -946,12 +996,10 @@ footer {
             Nhận Robux
         </h2>
 
-
         <div
             class="selected-package"
             id="rewardText">
         </div>
-
 
         <div class="input-group">
 
@@ -966,12 +1014,10 @@ footer {
 
         </div>
 
-
         <div
             class="error"
             id="rewardError">
         </div>
-
 
         <button
             class="confirm-btn"
@@ -986,9 +1032,7 @@ footer {
 </section>
 
 
-<!-- =========================
-     THÔNG TIN
-========================= -->
+<!-- THÔNG TIN -->
 
 <section class="container">
 
@@ -1006,7 +1050,6 @@ footer {
 
         </div>
 
-
         <div class="info-card">
 
             <h3>
@@ -1018,7 +1061,6 @@ footer {
             </p>
 
         </div>
-
 
         <div class="info-card">
 
@@ -1039,9 +1081,7 @@ footer {
 </main>
 
 
-<!-- =========================
-     TRANG THÀNH CÔNG ROBUX
-========================= -->
+<!-- TRANG THÀNH CÔNG -->
 
 <section
     class="success-page"
@@ -1078,9 +1118,7 @@ footer {
 </section>
 
 
-<!-- =========================
-     404
-========================= -->
+<!-- 404 -->
 
 <section
     class="error-page"
@@ -1116,27 +1154,23 @@ footer {
 
 
 <footer>
-
     © 2026 ShopRobuxLuaDao
-
 </footer>
 
 
 <script>
 
-/* =========================
-   BIẾN
-========================= */
-
 let selectedRobux = 0;
 let selectedPrice = "";
 
-let wheelSpun = false;
 let wheelReward = 0;
+
+/* SỐ LƯỢT QUAY */
+let spinCount = 1;
 
 
 /* =========================
-   MỞ MUA ROBUX
+   MUA ROBUX
 ========================= */
 
 function openPurchase(robux, price) {
@@ -1169,10 +1203,6 @@ function openPurchase(robux, price) {
 }
 
 
-/* =========================
-   ĐÓNG FORM ROBUX
-========================= */
-
 function closePurchase() {
 
     document.getElementById(
@@ -1204,10 +1234,6 @@ function closePurchase() {
     ).style.display = "none";
 }
 
-
-/* =========================
-   THANH TOÁN ROBUX
-========================= */
 
 function confirmPurchase() {
 
@@ -1247,8 +1273,7 @@ function confirmPurchase() {
         error.innerText =
             "❌ Vui lòng nhập tên Roblox!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
@@ -1259,8 +1284,7 @@ function confirmPurchase() {
         error.innerText =
             "❌ Vui lòng nhập số thẻ!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
@@ -1271,8 +1295,7 @@ function confirmPurchase() {
         error.innerText =
             "❌ Vui lòng nhập tên chủ thẻ!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
@@ -1283,8 +1306,7 @@ function confirmPurchase() {
         error.innerText =
             "❌ Vui lòng nhập ngày hết hạn!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
@@ -1295,15 +1317,13 @@ function confirmPurchase() {
         error.innerText =
             "❌ Vui lòng nhập CVV!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
 
 
-    error.style.display =
-        "none";
+    error.style.display = "none";
 
     showToast(
         "Đang xử lý thanh toán..."
@@ -1371,10 +1391,6 @@ function closeFCMobile() {
 }
 
 
-/* =========================
-   TẠO CHUỖI NGẪU NHIÊN
-========================= */
-
 function randomString(length) {
 
     const chars =
@@ -1390,8 +1406,7 @@ function randomString(length) {
 
         result += chars.charAt(
             Math.floor(
-                Math.random() *
-                chars.length
+                Math.random() * chars.length
             )
         );
 
@@ -1400,10 +1415,6 @@ function randomString(length) {
     return result;
 }
 
-
-/* =========================
-   MUA FC MOBILE
-========================= */
 
 function buyFCMobile() {
 
@@ -1438,8 +1449,7 @@ function buyFCMobile() {
         error.innerText =
             "❌ Vui lòng nhập tên chủ thẻ!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
@@ -1450,8 +1460,7 @@ function buyFCMobile() {
         error.innerText =
             "❌ Vui lòng nhập số thẻ!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
@@ -1462,8 +1471,7 @@ function buyFCMobile() {
         error.innerText =
             "❌ Vui lòng nhập ngày hết hạn!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
@@ -1474,15 +1482,13 @@ function buyFCMobile() {
         error.innerText =
             "❌ Vui lòng nhập CVV!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
 
 
-    error.style.display =
-        "none";
+    error.style.display = "none";
 
     showToast(
         "Đang xử lý..."
@@ -1501,26 +1507,22 @@ function buyFCMobile() {
 
         document.getElementById(
             "generatedUsername"
-        ).value =
-            username;
+        ).value = username;
 
 
         document.getElementById(
             "generatedPassword"
-        ).value =
-            password;
+        ).value = password;
 
 
         document.getElementById(
             "fcPanel"
-        ).style.display =
-            "none";
+        ).style.display = "none";
 
 
         document.getElementById(
             "fcAccountPanel"
-        ).style.display =
-            "block";
+        ).style.display = "block";
 
 
         document.getElementById(
@@ -1540,26 +1542,53 @@ function buyFCMobile() {
 
 
 /* =========================
-   VÒNG QUAY
+   CẬP NHẬT LƯỢT QUAY
+========================= */
+
+function updateSpinCount() {
+
+    document.getElementById(
+        "spinCount"
+    ).innerText =
+        "Bạn còn " +
+        spinCount +
+        " lượt quay";
+
+
+    document.getElementById(
+        "spinButton"
+    ).disabled =
+        spinCount <= 0;
+}
+
+
+/* =========================
+   QUAY
 ========================= */
 
 function spinWheel() {
 
-    if (wheelSpun) {
+    if (spinCount <= 0) {
 
         showToast(
-            "Bạn đã quay rồi!"
+            "Bạn đã hết lượt quay! Hãy mua thêm lượt."
         );
 
         return;
     }
 
 
-    wheelSpun = true;
+    spinCount--;
 
-    document.getElementById(
-        "spinButton"
-    ).disabled = true;
+    updateSpinCount();
+
+
+    const spinButton =
+        document.getElementById(
+            "spinButton"
+        );
+
+    spinButton.disabled = true;
 
 
     const rewards = [
@@ -1613,6 +1642,157 @@ function spinWheel() {
 
 
 /* =========================
+   MUA LƯỢT QUAY
+========================= */
+
+function openSpinPurchase() {
+
+    document.getElementById(
+        "spinPurchasePanel"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "spinPaymentError"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "spinPurchasePanel"
+    ).scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+
+function closeSpinPurchase() {
+
+    document.getElementById(
+        "spinPurchasePanel"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "spinCardName"
+    ).value = "";
+
+    document.getElementById(
+        "spinCardNumber"
+    ).value = "";
+
+    document.getElementById(
+        "spinCardExpiry"
+    ).value = "";
+
+    document.getElementById(
+        "spinCardCVV"
+    ).value = "";
+
+    document.getElementById(
+        "spinPaymentError"
+    ).style.display = "none";
+}
+
+
+function buySpin() {
+
+    const cardName =
+        document.getElementById(
+            "spinCardName"
+        ).value.trim();
+
+    const cardNumber =
+        document.getElementById(
+            "spinCardNumber"
+        ).value.trim();
+
+    const cardExpiry =
+        document.getElementById(
+            "spinCardExpiry"
+        ).value.trim();
+
+    const cardCVV =
+        document.getElementById(
+            "spinCardCVV"
+        ).value.trim();
+
+    const error =
+        document.getElementById(
+            "spinPaymentError"
+        );
+
+
+    if (cardName === "") {
+
+        error.innerText =
+            "❌ Vui lòng nhập tên chủ thẻ!";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    if (cardNumber === "") {
+
+        error.innerText =
+            "❌ Vui lòng nhập số thẻ!";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    if (cardExpiry === "") {
+
+        error.innerText =
+            "❌ Vui lòng nhập ngày hết hạn!";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    if (cardCVV === "") {
+
+        error.innerText =
+            "❌ Vui lòng nhập CVV!";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    error.style.display = "none";
+
+
+    showToast(
+        "Đang xử lý thanh toán 20.000đ..."
+    );
+
+
+    setTimeout(function() {
+
+        spinCount++;
+
+        updateSpinCount();
+
+        closeSpinPurchase();
+
+
+        showToast(
+            "🎉 Đã thêm 1 lượt quay!"
+        );
+
+    }, 1200);
+}
+
+
+/* =========================
    FORM NHẬN ROBUX
 ========================= */
 
@@ -1628,8 +1808,7 @@ function showRewardForm() {
 
     document.getElementById(
         "rewardPanel"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
 
     document.getElementById(
@@ -1640,10 +1819,6 @@ function showRewardForm() {
     });
 }
 
-
-/* =========================
-   NHẬN ROBUX
-========================= */
 
 function claimReward() {
 
@@ -1664,15 +1839,13 @@ function claimReward() {
         error.innerText =
             "❌ Vui lòng nhập tên Roblox!";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
 
 
-    error.style.display =
-        "none";
+    error.style.display = "none";
 
     showToast(
         "Đang xử lý..."
@@ -1690,27 +1863,24 @@ function claimReward() {
 
 
 /* =========================
-   HIỆN THÔNG BÁO NHẬN ROBUX
+   THÀNH CÔNG ROBUX
 ========================= */
 
 function showRobuxSuccess(amount) {
 
     document.getElementById(
         "mainPage"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     document.getElementById(
         "errorPage"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     document.getElementById(
         "successPage"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
 
     document.getElementById(
@@ -1729,27 +1899,24 @@ function showRobuxSuccess(amount) {
 
 
 /* =========================
-   VỀ TRANG CHỦ
+   TRANG CHỦ
 ========================= */
 
 function goHome() {
 
     document.getElementById(
         "mainPage"
-    ).style.display =
-        "block";
+    ).style.display = "block";
 
 
     document.getElementById(
         "successPage"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     document.getElementById(
         "errorPage"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     window.scrollTo({
@@ -1819,6 +1986,12 @@ document.addEventListener(
             );
 
 
+        const spinPurchasePanel =
+            document.getElementById(
+                "spinPurchasePanel"
+            );
+
+
         if (
             purchasePanel.style.display ===
             "block"
@@ -1846,8 +2019,22 @@ document.addEventListener(
 
         }
 
+        else if (
+            spinPurchasePanel.style.display ===
+            "block"
+        ) {
+
+            buySpin();
+
+        }
+
     }
 );
+
+
+/* Hiển thị số lượt ngay khi mở trang */
+
+updateSpinCount();
 
 </script>
 
