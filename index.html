@@ -6,433 +6,409 @@
 <title>ShopRobuxLuaDao</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    background: #0f1117;
-    color: white;
-    min-height: 100vh;
+body{
+    background:
+        radial-gradient(circle at 10% 20%,rgba(0,255,136,.12),transparent 25%),
+        radial-gradient(circle at 90% 10%,rgba(80,80,255,.15),transparent 28%),
+        radial-gradient(circle at 50% 90%,rgba(170,0,255,.10),transparent 30%),
+        linear-gradient(135deg,#080b12,#101522 45%,#090c14);
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
 }
 
-header {
-    background: #171a23;
-    padding: 18px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #292d38;
+body::before{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    background:rgba(0,255,140,.08);
+    border-radius:50%;
+    filter:blur(90px);
+    top:100px;
+    left:-120px;
+    animation:floatingLight 8s infinite alternate ease-in-out;
+    pointer-events:none;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #00ff88;
+body::after{
+    content:"";
+    position:fixed;
+    width:400px;
+    height:400px;
+    background:rgba(120,60,255,.08);
+    border-radius:50%;
+    filter:blur(100px);
+    right:-150px;
+    bottom:50px;
+    animation:floatingLight2 10s infinite alternate ease-in-out;
+    pointer-events:none;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 25px;
-    cursor: pointer;
+@keyframes floatingLight{
+    from{transform:translateY(0) translateX(0)}
+    to{transform:translateY(80px) translateX(80px)}
 }
 
-nav a:hover {
-    color: #00ff88;
+@keyframes floatingLight2{
+    from{transform:translateY(0)}
+    to{transform:translateY(-100px)}
 }
 
-.hero {
-    text-align: center;
-    padding: 70px 20px;
-    background: linear-gradient(135deg, #151922, #202632);
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(8,12,20,.78);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(0,255,140,.15);
+    box-shadow:0 5px 30px rgba(0,0,0,.25);
 }
 
-.hero h1 {
-    font-size: 45px;
-    margin-bottom: 15px;
+.logo{
+    color:#00ff88;
+    font-size:24px;
+    font-weight:bold;
+    text-shadow:0 0 15px rgba(0,255,136,.45);
 }
 
-.hero h1 span {
-    color: #00ff88;
+nav{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
 }
 
-.hero p {
-    color: #b9bec9;
-    font-size: 18px;
+nav button{
+    background:transparent;
+    color:white;
+    border:none;
+    padding:10px 12px;
+    cursor:pointer;
+    border-radius:10px;
+    transition:.25s;
 }
 
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 40px auto;
+nav button:hover{
+    background:rgba(0,255,136,.12);
+    color:#00ff88;
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 30px;
+section{
+    padding:70px 7%;
 }
 
-.packages {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+.hero{
+    min-height:400px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    background:radial-gradient(circle at center,rgba(0,255,136,.13),transparent 45%);
 }
 
-.card {
-    background: #191d27;
-    border: 1px solid #2c3240;
-    border-radius: 18px;
-    padding: 30px;
-    text-align: center;
-    transition: .3s;
+.hero h1{
+    font-size:clamp(42px,8vw,80px);
+    color:#00ff88;
+    text-shadow:0 0 30px rgba(0,255,136,.4);
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    border-color: #00ff88;
+.hero p{
+    margin-top:15px;
+    color:#b8c2d1;
+    font-size:18px;
 }
 
-.robux {
-    font-size: 34px;
-    font-weight: bold;
-    color: #00ff88;
-    margin: 15px 0;
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
 }
 
-.price {
-    font-size: 22px;
-    margin-bottom: 20px;
+.section-title h2{
+    font-size:34px;
+    margin-bottom:10px;
 }
 
-button {
-    border: none;
-    border-radius: 10px;
-    padding: 13px 22px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .2s;
+.section-title p{
+    color:#9ca8ba;
 }
 
-.buy-btn {
-    background: #00ff88;
-    color: #07130d;
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:22px;
 }
 
-.buy-btn:hover {
-    background: #00d970;
-    transform: scale(1.04);
+.card{
+    padding:28px;
+    text-align:center;
+    border-radius:20px;
+    background:
+        linear-gradient(145deg,rgba(24,31,45,.94),rgba(11,15,24,.94));
+    border:1px solid rgba(255,255,255,.07);
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
+    transition:.3s;
 }
 
-.panel {
-    display: none;
-    margin-top: 40px;
-    background: #191d27;
-    border: 1px solid #303644;
-    border-radius: 18px;
-    padding: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+.card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(0,255,136,.35);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.4),
+        0 0 25px rgba(0,255,136,.08);
 }
 
-.panel h2 {
-    text-align: center;
-    margin-bottom: 20px;
+.card h3{
+    margin-bottom:18px;
+    font-size:22px;
 }
 
-.selected-package {
-    text-align: center;
-    color: #00ff88;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: bold;
+.robux{
+    color:#00ff88;
+    font-size:25px;
+    font-weight:bold;
+    margin-bottom:8px;
 }
 
-.input-group {
-    margin-bottom: 18px;
+.price{
+    color:#ffd54a;
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #d9dde5;
+.buy-btn{
+    border:none;
+    background:linear-gradient(135deg,#00ff88,#00c96b);
+    color:#07100b;
+    font-weight:bold;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.25s;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 14px;
-    border-radius: 9px;
-    border: 1px solid #3a414f;
-    background: #10131a;
-    color: white;
-    outline: none;
-    font-size: 16px;
+.buy-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(0,255,136,.3);
 }
 
-.input-group input:focus {
-    border-color: #00ff88;
+.cancel-btn{
+    background:#252d3b!important;
+    color:white!important;
 }
 
-.input-group input[readonly] {
-    color: #00ff88;
-    font-weight: bold;
+.panel{
+    display:none;
+    max-width:550px;
+    margin:35px auto 0;
+    padding:30px;
+    border-radius:22px;
+    background:
+        radial-gradient(circle at top right,rgba(0,255,136,.08),transparent 35%),
+        linear-gradient(145deg,#151c2a,#0b1019);
+    border:1px solid rgba(0,255,136,.2);
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 
-.error {
-    display: none;
-    color: #ff5252;
-    margin-bottom: 15px;
-    text-align: center;
+.panel h3{
+    margin-bottom:20px;
+    text-align:center;
 }
 
-.confirm-btn {
-    width: 100%;
-    background: #00ff88;
-    color: #07130d;
+.selected-package{
+    padding:14px;
+    background:rgba(0,255,136,.07);
+    border:1px solid rgba(0,255,136,.15);
+    border-radius:12px;
+    text-align:center;
+    margin-bottom:18px;
+    color:#00ff88;
+    font-weight:bold;
 }
 
-.cancel-btn {
-    width: 100%;
-    margin-top: 10px;
-    background: #303642;
-    color: white;
+input{
+    width:100%;
+    padding:13px;
+    margin:8px 0;
+    border:1px solid #30394b;
+    border-radius:10px;
+    outline:none;
+    background:#080d15;
+    color:white;
 }
 
-/* VÒNG QUAY */
-
-.wheel-section {
-    margin-top: 70px;
+input:focus{
+    border-color:#00ff88;
+    box-shadow:0 0 10px rgba(0,255,136,.08);
 }
 
-.wheel-box {
-    text-align: center;
-    background: #191d27;
-    border-radius: 18px;
-    padding: 35px;
-    border: 1px solid #303644;
+.form-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
 }
 
-.wheel {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    margin: 30px auto;
-    border: 8px solid white;
-    background: conic-gradient(
-        #ff4747 0deg 72deg,
-        #ffd447 72deg 144deg,
-        #4c8dff 144deg 216deg,
-        #9d4edd 216deg 288deg,
-        #00d084 288deg 360deg
+.form-buttons button{
+    flex:1;
+}
+
+.error{
+    color:#ff5f5f;
+    margin-top:8px;
+    display:none;
+    text-align:center;
+}
+
+.wheel-box{
+    max-width:600px;
+    margin:auto;
+    text-align:center;
+    padding:35px;
+    border-radius:25px;
+    background:
+        radial-gradient(circle at center,rgba(0,255,136,.08),transparent 50%),
+        linear-gradient(145deg,#151d2c,#090e17);
+    border:1px solid rgba(0,255,136,.15);
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+.wheel{
+    width:270px;
+    height:270px;
+    border-radius:50%;
+    margin:25px auto;
+    border:10px solid #202938;
+    background:conic-gradient(
+        #00ff88 0deg 72deg,
+        #8c52ff 72deg 144deg,
+        #ffcf40 144deg 216deg,
+        #ff5c8a 216deg 288deg,
+        #4fa9ff 288deg 360deg
     );
-    position: relative;
-    transition: transform 4s cubic-bezier(.17,.67,.12,.99);
+    position:relative;
+    transition:transform 4s cubic-bezier(.17,.67,.15,1);
+    box-shadow:0 0 35px rgba(0,255,136,.15);
 }
 
-.wheel::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: white;
-    border-radius: 50%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+.wheel::after{
+    content:"🎁";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#101722;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
 }
 
-.pointer {
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 35px solid white;
-    margin: auto;
-    position: relative;
-    top: 10px;
-    z-index: 5;
+.pointer{
+    width:0;
+    height:0;
+    border-left:13px solid transparent;
+    border-right:13px solid transparent;
+    border-top:30px solid #ff5555;
+    margin:auto;
 }
 
-.spin-btn {
-    background: #ffcc00;
-    color: #111;
-    padding: 15px 35px;
+.spin-count{
+    color:#00ff88;
+    font-weight:bold;
+    margin:15px;
 }
 
-.spin-btn:disabled {
-    opacity: .5;
-    cursor: not-allowed;
+.result{
+    margin-top:20px;
+    font-size:21px;
+    font-weight:bold;
 }
 
-.result {
-    font-size: 22px;
-    color: #00ff88;
-    font-weight: bold;
-    margin-top: 20px;
-    min-height: 30px;
+.success{
+    display:none;
+    max-width:650px;
+    margin:60px auto;
+    padding:50px 30px;
+    text-align:center;
+    border-radius:25px;
+    background:
+        radial-gradient(circle at center,rgba(0,255,136,.12),transparent 55%),
+        #101722;
+    border:1px solid rgba(0,255,136,.25);
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
-.spin-count {
-    margin-top: 20px;
-    color: #00ff88;
-    font-weight: bold;
+.success h2{
+    color:#00ff88;
+    font-size:34px;
+    margin-bottom:15px;
 }
 
-/* THÔNG TIN */
-
-.info {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 60px;
+.success p{
+    color:#c4ccd8;
+    margin:10px 0;
 }
 
-.info-card {
-    background: #191d27;
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
+#toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#141d2a;
+    border:1px solid rgba(0,255,136,.3);
+    padding:15px 20px;
+    border-radius:12px;
+    display:none;
+    z-index:200;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
-.info-card h3 {
-    margin-bottom: 10px;
-    color: #00ff88;
+footer{
+    text-align:center;
+    padding:35px;
+    color:#778398;
+    border-top:1px solid rgba(255,255,255,.06);
 }
 
-.info-card p {
-    color: #b8bdc7;
-    line-height: 1.5;
-}
+@media(max-width:700px){
 
-/* THÀNH CÔNG */
-
-.success-page {
-    display: none;
-    min-height: 80vh;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.success-box {
-    max-width: 650px;
-    margin: auto;
-    background: #191d27;
-    border: 1px solid #00ff88;
-    border-radius: 20px;
-    padding: 50px 30px;
-}
-
-.success-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 25px;
-    border-radius: 50%;
-    background: #00ff88;
-    color: #07130d;
-    font-size: 55px;
-    font-weight: bold;
-    line-height: 80px;
-}
-
-.success-box h1 {
-    font-size: 38px;
-    margin-bottom: 15px;
-    color: #00ff88;
-}
-
-.success-box h2 {
-    font-size: 25px;
-    margin-bottom: 15px;
-}
-
-.success-box p {
-    color: #aeb4c0;
-    margin-bottom: 30px;
-}
-
-.home-btn {
-    background: #00ff88;
-    color: #07130d;
-}
-
-/* 404 */
-
-.error-page {
-    display: none;
-    text-align: center;
-    min-height: 80vh;
-    padding: 100px 20px;
-}
-
-.error-page h1 {
-    font-size: 120px;
-    color: #ff4040;
-}
-
-.error-page h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-.error-page p {
-    color: #b9bec9;
-    margin-bottom: 30px;
-}
-
-/* TOAST */
-
-.toast {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    background: #252a35;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 10px;
-    display: none;
-    z-index: 200;
-}
-
-footer {
-    margin-top: 70px;
-    padding: 30px;
-    text-align: center;
-    background: #171a23;
-    color: #8e95a3;
-    line-height: 1.7;
-}
-
-@media(max-width:800px) {
-
-    .packages,
-    .info {
-        grid-template-columns: 1fr;
+    header{
+        flex-direction:column;
+        gap:12px;
     }
 
-    .hero h1 {
-        font-size: 34px;
+    nav{
+        justify-content:center;
     }
 
-    .wheel {
-        width: 250px;
-        height: 250px;
+    section{
+        padding:50px 5%;
     }
 
-    nav {
-        display: none;
+    .wheel{
+        width:220px;
+        height:220px;
     }
 }
 </style>
@@ -447,27 +423,49 @@ footer {
     </div>
 
     <nav>
-        <a onclick="goHome()">Trang chủ</a>
-        <a href="#packages">Mua Robux</a>
-        <a href="#fc-mobile">FC Mobile</a>
-        <a href="#wheel-section">Vòng quay</a>
+
+        <button type="button" onclick="goHome()">
+            Trang chủ
+        </button>
+
+        <button type="button" onclick="scrollToSection('robux')">
+            Mua Robux
+        </button>
+
+        <button type="button" onclick="scrollToSection('fc')">
+            FC Mobile
+        </button>
+
+        <button type="button" onclick="scrollToSection('lienquan')">
+            Liên Quân
+        </button>
+
+        <button type="button" onclick="scrollToSection('stealegg')">
+            Steal an Egg
+        </button>
+
+        <button type="button" onclick="scrollToSection('wheelSection')">
+            Vòng quay
+        </button>
+
     </nav>
 
 </header>
 
 
-<main id="mainPage">
+<main id="mainContent">
 
-<!-- HERO -->
 
-<section class="hero">
+<!-- TRANG CHỦ -->
+
+<section class="hero" id="home">
 
     <h1>
-        SHOP <span>ROBUX</span>
+        SHOP ROBUX
     </h1>
 
     <p>
-        Chọn sản phẩm bạn muốn mua
+        Robux • FC Mobile • Liên Quân • Steal an Egg • Vòng quay
     </p>
 
 </section>
@@ -475,17 +473,26 @@ footer {
 
 <!-- ROBUX -->
 
-<section class="container" id="packages">
+<section id="robux">
 
-    <h2 class="section-title">
-        Các gói Robux
-    </h2>
+    <div class="section-title">
 
-    <div class="packages">
+        <h2>🤑 Mua Robux</h2>
+
+        <p>
+            Chọn gói Robux bạn muốn mua
+        </p>
+
+    </div>
+
+
+    <div class="cards">
 
         <div class="card">
 
-            <h3>Gói Cơ Bản</h3>
+            <h3>
+                Robux
+            </h3>
 
             <div class="robux">
                 55 Robux
@@ -495,9 +502,9 @@ footer {
                 15.000đ
             </div>
 
-            <button
-                class="buy-btn"
-                onclick="openPurchase(55,'15.000đ')">
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openPurchase(55,'15.000đ')">
 
                 MUA ROBUX
 
@@ -508,7 +515,9 @@ footer {
 
         <div class="card">
 
-            <h3>Gói Tiêu Chuẩn</h3>
+            <h3>
+                Robux
+            </h3>
 
             <div class="robux">
                 145 Robux
@@ -518,9 +527,9 @@ footer {
                 50.000đ
             </div>
 
-            <button
-                class="buy-btn"
-                onclick="openPurchase(145,'50.000đ')">
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openPurchase(145,'50.000đ')">
 
                 MUA ROBUX
 
@@ -531,7 +540,9 @@ footer {
 
         <div class="card">
 
-            <h3>Gói Cao Cấp</h3>
+            <h3>
+                Robux
+            </h3>
 
             <div class="robux">
                 300 Robux
@@ -541,9 +552,9 @@ footer {
                 100.000đ
             </div>
 
-            <button
-                class="buy-btn"
-                onclick="openPurchase(300,'100.000đ')">
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openPurchase(300,'100.000đ')">
 
                 MUA ROBUX
 
@@ -554,104 +565,51 @@ footer {
     </div>
 
 
-    <!-- FORM MUA ROBUX -->
-
     <div class="panel" id="purchasePanel">
 
-        <h2>
-            Thanh toán đơn hàng
-        </h2>
+        <h3>
+            🛒 Thông tin mua Robux
+        </h3>
 
-        <div
-            class="selected-package"
-            id="selectedPackage">
+        <div class="selected-package"
+             id="selectedPackage">
         </div>
 
-        <div class="input-group">
+        <input id="robloxName"
+               placeholder="Nhập tên Roblox">
 
-            <label>
-                Tên Roblox
-            </label>
+        <input id="demoCard"
+               placeholder="Thông tin thanh toán demo">
 
-            <input
-                type="text"
-                id="robloxName"
-                placeholder="Nhập tên Roblox">
+        <input id="demoCode"
+               placeholder="Mã xác nhận demo">
 
-        </div>
+        <div class="error"
+             id="purchaseError">
 
-        <div class="input-group">
-
-            <label>
-                Số thẻ
-            </label>
-
-            <input
-                type="text"
-                id="cardNumber"
-                placeholder="Nhập số bất kỳ">
+            Vui lòng nhập đầy đủ thông tin!
 
         </div>
 
-        <div class="input-group">
+        <div class="form-buttons">
 
-            <label>
-                Tên chủ thẻ
-            </label>
+            <button type="button"
+                    class="buy-btn"
+                    onclick="confirmPurchase()">
 
-            <input
-                type="text"
-                id="cardName"
-                placeholder="Nhập tên bất kỳ">
+                XÁC NHẬN
 
-        </div>
+            </button>
 
-        <div class="input-group">
+            <button type="button"
+                    class="buy-btn cancel-btn"
+                    onclick="closePurchase()">
 
-            <label>
-                Ngày hết hạn
-            </label>
+                HỦY
 
-            <input
-                type="text"
-                id="cardExpiry"
-                placeholder="MM/YY">
+            </button>
 
         </div>
-
-        <div class="input-group">
-
-            <label>
-                CVV
-            </label>
-
-            <input
-                type="text"
-                id="cardCVV"
-                placeholder="Nhập số bất kỳ">
-
-        </div>
-
-        <div
-            class="error"
-            id="formError">
-        </div>
-
-        <button
-            class="confirm-btn"
-            onclick="confirmPurchase()">
-
-            THANH TOÁN
-
-        </button>
-
-        <button
-            class="cancel-btn"
-            onclick="closePurchase()">
-
-            HỦY
-
-        </button>
 
     </div>
 
@@ -660,21 +618,49 @@ footer {
 
 <!-- FC MOBILE -->
 
-<section
-    class="container"
-    id="fc-mobile">
+<section id="fc">
 
-    <h2 class="section-title">
-        Tài khoản FC Mobile
-    </h2>
+    <div class="section-title">
 
-    <div class="packages">
+        <h2>
+            ⚽ FC Mobile
+        </h2>
+
+        <p>
+            Chọn tài khoản FC Mobile
+        </p>
+
+    </div>
+
+
+    <div class="cards">
 
         <div class="card">
 
-            <h3>
-                FC Mobile
-            </h3>
+            <h3>FC Mobile</h3>
+
+            <div class="robux">
+                OVR 127
+            </div>
+
+            <div class="price">
+                47.000đ / acc
+            </div>
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openFCMobilePurchase(127,'47.000đ')">
+
+                MUA ACC
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>FC Mobile</h3>
 
             <div class="robux">
                 OVR 125
@@ -684,9 +670,55 @@ footer {
                 36.000đ / acc
             </div>
 
-            <button
-                class="buy-btn"
-                onclick="openFCMobilePurchase()">
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openFCMobilePurchase(125,'36.000đ')">
+
+                MUA ACC
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>FC Mobile</h3>
+
+            <div class="robux">
+                OVR 121
+            </div>
+
+            <div class="price">
+                25.000đ / acc
+            </div>
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openFCMobilePurchase(121,'25.000đ')">
+
+                MUA ACC
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>FC Mobile</h3>
+
+            <div class="robux">
+                OVR 120
+            </div>
+
+            <div class="price">
+                15.000đ / acc
+            </div>
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openFCMobilePurchase(120,'15.000đ')">
 
                 MUA ACC
 
@@ -697,133 +729,380 @@ footer {
     </div>
 
 
-    <!-- FORM FC MOBILE -->
+    <div class="panel" id="fcPanel">
 
-    <div
-        class="panel"
-        id="fcPanel">
+        <h3>
+            ⚽ Thanh toán tài khoản FC Mobile
+        </h3>
+
+        <div class="selected-package"
+             id="selectedFCAccount">
+        </div>
+
+        <input id="fcBuyerName"
+               placeholder="Tên người mua">
+
+        <input id="fcDemoCard"
+               placeholder="Thông tin thanh toán demo">
+
+        <input id="fcDemoCode"
+               placeholder="Mã xác nhận demo">
+
+        <div class="error"
+             id="fcError">
+
+            Vui lòng nhập đầy đủ thông tin!
+
+        </div>
+
+        <div class="form-buttons">
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="buyFCMobile(event)">
+
+                💳 THANH TOÁN & NHẬN ACC
+
+            </button>
+
+            <button type="button"
+                    class="buy-btn cancel-btn"
+                    onclick="closeFCMobile()">
+
+                HỦY
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LIÊN QUÂN -->
+
+<section id="lienquan">
+
+    <div class="section-title">
 
         <h2>
-            Mua tài khoản FC Mobile
+            ⚔️ Liên Quân Mobile
         </h2>
 
-        <div class="selected-package">
-            FC Mobile OVR 125 - 36.000đ
-        </div>
-
-        <div class="input-group">
-
-            <label>
-                Tên chủ thẻ
-            </label>
-
-            <input
-                type="text"
-                id="fcCardName"
-                placeholder="Nhập tên bất kỳ">
-
-        </div>
-
-        <div class="input-group">
-
-            <label>
-                Số thẻ
-            </label>
-
-            <input
-                type="text"
-                id="fcCardNumber"
-                placeholder="Nhập số bất kỳ">
-
-        </div>
-
-        <div class="input-group">
-
-            <label>
-                Ngày hết hạn
-            </label>
-
-            <input
-                type="text"
-                id="fcCardExpiry"
-                placeholder="MM/YY">
-
-        </div>
-
-        <div class="input-group">
-
-            <label>
-                CVV
-            </label>
-
-            <input
-                type="text"
-                id="fcCardCVV"
-                placeholder="Nhập số bất kỳ">
-
-        </div>
-
-        <div
-            class="error"
-            id="fcError">
-        </div>
-
-        <button
-            class="confirm-btn"
-            onclick="buyFCMobile()">
-
-            MUA ACC
-
-        </button>
-
-        <button
-            class="cancel-btn"
-            onclick="closeFCMobile()">
-
-            HỦY
-
-        </button>
+        <p>
+            Chọn tài khoản Liên Quân Mobile
+        </p>
 
     </div>
 
 
-    <!-- ACCOUNT -->
+    <div class="cards">
 
-    <div
-        class="panel"
-        id="fcAccountPanel">
+        <div class="card">
+
+            <h3>
+                Liên Quân Mobile
+            </h3>
+
+            <div class="robux">
+                Full Skin SS
+            </div>
+
+            <div class="price">
+                36.000.000đ / acc
+            </div>
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openLienQuanPurchase(
+                        'Full Skin SS',
+                        '36.000.000đ'
+                    )">
+
+                MUA ACC
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Liên Quân Mobile
+            </h3>
+
+            <div class="robux">
+                Full Tướng + Full Skin S
+            </div>
+
+            <div class="price">
+                15.000.000đ / acc
+            </div>
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openLienQuanPurchase(
+                        'Full Tướng + Full Skin S',
+                        '15.000.000đ'
+                    )">
+
+                MUA ACC
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel"
+         id="lienquanPanel">
+
+        <h3>
+            ⚔️ Thanh toán tài khoản Liên Quân
+        </h3>
+
+        <div class="selected-package"
+             id="selectedLienQuan">
+        </div>
+
+        <input id="lqBuyerName"
+               placeholder="Tên người mua">
+
+        <input id="lqDemoCard"
+               placeholder="Thông tin thanh toán demo">
+
+        <input id="lqDemoCode"
+               placeholder="Mã xác nhận demo">
+
+        <div class="error"
+             id="lqError">
+
+            Vui lòng nhập đầy đủ thông tin!
+
+        </div>
+
+        <div class="form-buttons">
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="buyLienQuan()">
+
+                💳 THANH TOÁN
+
+            </button>
+
+            <button type="button"
+                    class="buy-btn cancel-btn"
+                    onclick="closeLienQuan()">
+
+                HỦY
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STEAL AN EGG -->
+
+<section id="stealegg">
+
+    <div class="section-title">
 
         <h2>
-            🎉 Mua tài khoản thành công!
+            🥚 Steal an Egg
         </h2>
 
-        <div class="selected-package">
-            Tài khoản FC Mobile OVR 125
+        <p>
+            Chọn tài khoản Steal an Egg
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <!-- ACC 1 -->
+
+        <div class="card">
+
+            <h3>
+                🥚 Steal an Egg
+            </h3>
+
+            <div class="robux">
+                200T Speed
+            </div>
+
+            <p style="
+                color:#d4dbea;
+                line-height:1.6;
+                margin-bottom:12px;
+            ">
+                Full con 3B tiền trở lên
+                <br>
+                (10 con)
+            </p>
+
+            <div class="price">
+                250.000đ
+            </div>
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openStealEggPurchase(
+                        '200T Speed + Full con 3B tiền trở lên (10 con)',
+                        '250.000đ'
+                    )">
+
+                MUA ACC
+
+            </button>
+
         </div>
 
-        <div class="input-group">
 
-            <label>
-                Tên tài khoản
-            </label>
+        <!-- ACC 2 -->
 
-            <input
-                type="text"
-                id="generatedUsername"
-                readonly>
+        <div class="card">
+
+            <h3>
+                🥚 Steal an Egg
+            </h3>
+
+            <div class="robux">
+                55T Speed
+            </div>
+
+            <p style="
+                color:#d4dbea;
+                line-height:1.6;
+                margin-bottom:12px;
+            ">
+                TreadMill
+                <br>
+                (+2K step)
+            </p>
+
+            <div class="price">
+                225.000đ
+            </div>
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openStealEggPurchase(
+                        '55T Speed + TreadMill (+2K step)',
+                        '225.000đ'
+                    )">
+
+                MUA ACC
+
+            </button>
 
         </div>
 
-        <div class="input-group">
 
-            <label>
-                Mật khẩu
-            </label>
+        <!-- ACC 3 -->
 
-            <input
-                type="text"
-                id="generatedPassword"
-                readonly>
+        <div class="card">
+
+            <h3>
+                🥚 Steal an Egg
+            </h3>
+
+            <div class="robux">
+                150T Speed
+            </div>
+
+            <p style="
+                color:#d4dbea;
+                line-height:1.6;
+                margin-bottom:12px;
+            ">
+                TreadMill
+                <br>
+                (+3K step)
+            </p>
+
+            <div class="price">
+                175.000đ
+            </div>
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="openStealEggPurchase(
+                        '150T Speed + TreadMill (+3K step)',
+                        '175.000đ'
+                    )">
+
+                MUA ACC
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PANEL MUA STEAL AN EGG -->
+
+    <div class="panel"
+         id="stealEggPanel">
+
+        <h3>
+            🥚 Thanh toán tài khoản Steal an Egg
+        </h3>
+
+        <div class="selected-package"
+             id="selectedStealEgg">
+        </div>
+
+        <input id="eggBuyerName"
+               type="text"
+               placeholder="Tên người mua"
+               autocomplete="off">
+
+        <input id="eggDemoCard"
+               type="text"
+               placeholder="Thông tin thanh toán demo"
+               autocomplete="off">
+
+        <input id="eggDemoCode"
+               type="text"
+               placeholder="Mã xác nhận demo"
+               autocomplete="off">
+
+        <div class="error"
+             id="eggError">
+
+            Vui lòng nhập đầy đủ thông tin!
+
+        </div>
+
+        <div class="form-buttons">
+
+            <button type="button"
+                    class="buy-btn"
+                    onclick="buyStealEgg()">
+
+                💳 THANH TOÁN & NHẬN ACC
+
+            </button>
+
+            <button type="button"
+                    class="buy-btn cancel-btn"
+                    onclick="closeStealEgg()">
+
+                HỦY
+
+            </button>
 
         </div>
 
@@ -834,194 +1113,87 @@ footer {
 
 <!-- VÒNG QUAY -->
 
-<section
-    class="container wheel-section"
-    id="wheel-section">
+<section id="wheelSection">
 
-    <h2 class="section-title">
-        Vòng quay Robux
-    </h2>
+    <div class="section-title">
+
+        <h2>
+            🎡 Vòng quay Robux
+        </h2>
+
+        <p>
+            Quay để nhận phần thưởng
+        </p>
+
+    </div>
+
 
     <div class="wheel-box">
 
-        <p>
-            Bạn có 1 lượt quay ban đầu.
-        </p>
-
         <div class="pointer"></div>
 
-        <div
-            class="wheel"
-            id="wheel">
+        <div class="wheel"
+             id="wheel">
         </div>
 
-        <button
-            class="spin-btn"
-            id="spinButton"
-            onclick="spinWheel()">
-
-            QUAY NGAY
-
-        </button>
-
-        <br><br>
-
-        <button
-            class="buy-btn"
-            onclick="openSpinPurchase()">
-
-            🎟️ MUA 1 LƯỢT QUAY - 20.000đ
-
-        </button>
-
-        <div
-            class="spin-count"
-            id="spinCount">
+        <div class="spin-count"
+             id="spinCount">
 
             Bạn còn 1 lượt quay
 
         </div>
 
-        <div
-            class="result"
-            id="wheelResult">
+        <button type="button"
+                class="buy-btn"
+                onclick="spinWheel()">
+
+            🎡 QUAY NGAY
+
+        </button>
+
+        <br><br>
+
+        <button type="button"
+                class="buy-btn"
+                onclick="openSpinPurchase()">
+
+            🎟️ MUA 1 LƯỢT QUAY - 20.000đ
+
+        </button>
+
+        <div class="result"
+             id="wheelResult">
         </div>
 
     </div>
 
 
-    <!-- FORM MUA LƯỢT QUAY -->
+    <!-- NHẬN THƯỞNG -->
 
-    <div
-        class="panel"
-        id="spinPurchasePanel">
+    <div class="panel"
+         id="rewardPanel">
 
-        <h2>
-            Mua lượt quay
-        </h2>
+        <h3>
+            🎁 Nhận phần thưởng
+        </h3>
 
-        <div class="selected-package">
+        <div class="selected-package"
+             id="rewardInfo">
+        </div>
 
-            1 lượt quay - 20.000đ
+        <input id="rewardName"
+               placeholder="Nhập tên Roblox">
+
+        <div class="error"
+             id="rewardError">
+
+            Vui lòng nhập tên Roblox!
 
         </div>
 
-        <div class="input-group">
-
-            <label>
-                Tên chủ thẻ
-            </label>
-
-            <input
-                type="text"
-                id="spinCardName"
-                placeholder="Nhập tên bất kỳ">
-
-        </div>
-
-        <div class="input-group">
-
-            <label>
-                Số thẻ
-            </label>
-
-            <input
-                type="text"
-                id="spinCardNumber"
-                placeholder="Nhập số bất kỳ">
-
-        </div>
-
-        <div class="input-group">
-
-            <label>
-                Ngày hết hạn
-            </label>
-
-            <input
-                type="text"
-                id="spinCardExpiry"
-                placeholder="MM/YY">
-
-        </div>
-
-        <div class="input-group">
-
-            <label>
-                CVV
-            </label>
-
-            <input
-                type="text"
-                id="spinCardCVV"
-                placeholder="Nhập số bất kỳ">
-
-        </div>
-
-        <div
-            class="error"
-            id="spinPaymentError">
-        </div>
-
-        <button
-            class="confirm-btn"
-            onclick="buySpin()">
-
-            THANH TOÁN 20.000đ
-
-        </button>
-
-        <button
-            class="cancel-btn"
-            onclick="closeSpinPurchase()">
-
-            HỦY
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- NHẬN ROBUX -->
-
-<section class="container">
-
-    <div
-        class="panel"
-        id="rewardPanel">
-
-        <h2>
-            Nhận Robux
-        </h2>
-
-        <div
-            class="selected-package"
-            id="rewardText">
-        </div>
-
-        <div class="input-group">
-
-            <label>
-                Tên Roblox
-            </label>
-
-            <input
-                type="text"
-                id="rewardRobloxName"
-                placeholder="Nhập tên Roblox">
-
-        </div>
-
-        <div
-            class="error"
-            id="rewardError">
-        </div>
-
-        <button
-            class="confirm-btn"
-            onclick="claimReward()">
+        <button type="button"
+                class="buy-btn"
+                onclick="claimReward()">
 
             NHẬN ROBUX
 
@@ -1029,48 +1201,53 @@ footer {
 
     </div>
 
-</section>
 
+    <!-- MUA LƯỢT QUAY -->
 
-<!-- THÔNG TIN -->
+    <div class="panel"
+         id="spinPurchasePanel">
 
-<section class="container">
+        <h3>
+            🎟️ Mua lượt quay
+        </h3>
 
-    <div class="info">
+        <div class="selected-package">
+            1 lượt quay - 20.000đ
+        </div>
 
-        <div class="info-card">
+        <input id="spinBuyerName"
+               placeholder="Tên người mua">
 
-            <h3>
-                ⚡ Nhanh chóng
-            </h3>
+        <input id="spinDemoCard"
+               placeholder="Thông tin thanh toán demo">
 
-            <p>
-                Giao diện đơn giản và dễ sử dụng.
-            </p>
+        <input id="spinDemoCode"
+               placeholder="Mã xác nhận demo">
+
+        <div class="error"
+             id="spinError">
+
+            Vui lòng nhập đầy đủ thông tin!
 
         </div>
 
-        <div class="info-card">
+        <div class="form-buttons">
 
-            <h3>
-                🔒 Thanh toán
-            </h3>
+            <button type="button"
+                    class="buy-btn"
+                    onclick="buySpin()">
 
-            <p>
-                Quy trình thanh toán đơn giản.
-            </p>
+                MUA LƯỢT QUAY
 
-        </div>
+            </button>
 
-        <div class="info-card">
+            <button type="button"
+                    class="buy-btn cancel-btn"
+                    onclick="closeSpinPurchase()">
 
-            <h3>
-                🎁 Vòng quay
-            </h3>
+                HỦY
 
-            <p>
-                Thử vận may với vòng quay Robux.
-            </p>
+            </button>
 
         </div>
 
@@ -1078,79 +1255,33 @@ footer {
 
 </section>
 
-</main>
 
+<!-- SUCCESS -->
 
-<!-- TRANG THÀNH CÔNG -->
-
-<section
-    class="success-page"
-    id="successPage">
-
-    <div class="success-box">
-
-        <div class="success-icon">
-            ✓
-        </div>
-
-        <h1>
-            Chúc mừng!
-        </h1>
-
-        <h2 id="successRobux">
-            Bạn đã nhận được 0 Robux
-        </h2>
-
-        <p>
-            Giao dịch đã hoàn tất.
-        </p>
-
-        <button
-            class="home-btn"
-            onclick="goHome()">
-
-            QUAY VỀ TRANG CHỦ
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- 404 -->
-
-<section
-    class="error-page"
-    id="errorPage">
-
-    <h1>
-        404
-    </h1>
+<div class="success"
+     id="successPage">
 
     <h2>
-        ERROR - PAGE NOT FOUND
+        🎉 Giao dịch thành công!
     </h2>
 
-    <p>
-        Trang bạn đang tìm kiếm không tồn tại hoặc đã bị lỗi.
-    </p>
+    <p id="successText"></p>
 
-    <button
-        class="home-btn"
-        onclick="goHome()">
+    <div class="selected-package"
+         id="accountSuccessInfo">
+    </div>
 
-        QUAY VỀ TRANG CHỦ
+    <button type="button"
+            class="buy-btn"
+            onclick="goHome()">
+
+        VỀ TRANG CHỦ
 
     </button>
 
-</section>
-
-
-<div
-    class="toast"
-    id="toast">
 </div>
+
+</main>
 
 
 <footer>
@@ -1158,257 +1289,148 @@ footer {
 </footer>
 
 
+<div id="toast"></div>
+
+
 <script>
+
+/* BIẾN */
 
 let selectedRobux = 0;
 let selectedPrice = "";
 
 let wheelReward = 0;
-
-/* SỐ LƯỢT QUAY */
 let spinCount = 1;
 
+let selectedFCOVR = 0;
+let selectedFCPrice = "";
 
-/* =========================
-   MUA ROBUX
-========================= */
+let selectedLQType = "";
+let selectedLQPrice = "";
 
-function openPurchase(robux, price) {
+let selectedEggType = "";
+let selectedEggPrice = "";
+
+
+/* MENU */
+
+function scrollToSection(id){
+
+    const section =
+        document.getElementById(id);
+
+    if(section){
+
+        section.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
+}
+
+
+/* ROBUX */
+
+function openPurchase(robux,price){
 
     selectedRobux = robux;
     selectedPrice = price;
 
-    document.getElementById(
-        "purchasePanel"
-    ).style.display = "block";
+    document.getElementById("selectedPackage").textContent =
+        robux+" Robux - "+price;
 
-    document.getElementById(
-        "selectedPackage"
-    ).innerHTML =
-        "Bạn đang mua: " +
-        robux +
-        " Robux - " +
-        price;
+    document.getElementById("purchaseError").style.display =
+        "none";
 
-    document.getElementById(
-        "formError"
-    ).style.display = "none";
+    document.getElementById("purchasePanel").style.display =
+        "block";
 
-    document.getElementById(
-        "purchasePanel"
-    ).scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+    document.getElementById("purchasePanel").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
     });
 }
 
 
-function closePurchase() {
+function closePurchase(){
 
-    document.getElementById(
-        "purchasePanel"
-    ).style.display = "none";
+    document.getElementById("purchasePanel").style.display =
+        "none";
 
-    document.getElementById(
-        "robloxName"
-    ).value = "";
-
-    document.getElementById(
-        "cardNumber"
-    ).value = "";
-
-    document.getElementById(
-        "cardName"
-    ).value = "";
-
-    document.getElementById(
-        "cardExpiry"
-    ).value = "";
-
-    document.getElementById(
-        "cardCVV"
-    ).value = "";
-
-    document.getElementById(
-        "formError"
-    ).style.display = "none";
 }
 
 
-function confirmPurchase() {
+function confirmPurchase(){
 
-    const robloxName =
-        document.getElementById(
-            "robloxName"
-        ).value.trim();
+    const name =
+        document.getElementById("robloxName").value.trim();
 
-    const cardNumber =
-        document.getElementById(
-            "cardNumber"
-        ).value.trim();
+    const card =
+        document.getElementById("demoCard").value.trim();
 
-    const cardName =
-        document.getElementById(
-            "cardName"
-        ).value.trim();
+    const code =
+        document.getElementById("demoCode").value.trim();
 
-    const cardExpiry =
-        document.getElementById(
-            "cardExpiry"
-        ).value.trim();
+    if(!name || !card || !code){
 
-    const cardCVV =
-        document.getElementById(
-            "cardCVV"
-        ).value.trim();
-
-    const error =
-        document.getElementById(
-            "formError"
-        );
-
-
-    if (robloxName === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập tên Roblox!";
-
-        error.style.display = "block";
+        document.getElementById("purchaseError").style.display =
+            "block";
 
         return;
     }
 
-
-    if (cardNumber === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập số thẻ!";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (cardName === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập tên chủ thẻ!";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (cardExpiry === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập ngày hết hạn!";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (cardCVV === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập CVV!";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    error.style.display = "none";
-
-    showToast(
-        "Đang xử lý thanh toán..."
-    );
-
-
-    setTimeout(function() {
-
-        showRobuxSuccess(
-            selectedRobux
-        );
-
-    }, 1200);
+    showRobuxSuccess(selectedRobux);
 }
 
 
-/* =========================
-   FC MOBILE
-========================= */
+/* FC MOBILE */
 
-function openFCMobilePurchase() {
+function openFCMobilePurchase(ovr,price){
 
-    document.getElementById(
-        "fcPanel"
-    ).style.display = "block";
+    selectedFCOVR = Number(ovr);
+    selectedFCPrice = String(price);
 
-    document.getElementById(
-        "fcPanel"
-    ).scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+    document.getElementById("selectedFCAccount").textContent =
+        "FC Mobile OVR "+
+        selectedFCOVR+
+        " - "+
+        selectedFCPrice;
+
+    document.getElementById("fcError").style.display =
+        "none";
+
+    document.getElementById("fcPanel").style.display =
+        "block";
+
+    document.getElementById("fcPanel").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
     });
-
-    document.getElementById(
-        "fcError"
-    ).style.display = "none";
 }
 
 
-function closeFCMobile() {
+function closeFCMobile(){
 
-    document.getElementById(
-        "fcPanel"
-    ).style.display = "none";
+    document.getElementById("fcPanel").style.display =
+        "none";
 
-    document.getElementById(
-        "fcCardName"
-    ).value = "";
-
-    document.getElementById(
-        "fcCardNumber"
-    ).value = "";
-
-    document.getElementById(
-        "fcCardExpiry"
-    ).value = "";
-
-    document.getElementById(
-        "fcCardCVV"
-    ).value = "";
-
-    document.getElementById(
-        "fcError"
-    ).style.display = "none";
 }
 
 
-function randomString(length) {
+function randomString(length){
 
     const chars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     let result = "";
 
-    for (
-        let i = 0;
-        i < length;
-        i++
-    ) {
+    for(let i=0;i<length;i++){
 
-        result += chars.charAt(
-            Math.floor(
-                Math.random() * chars.length
-            )
-        );
+        result +=
+            chars.charAt(
+                Math.floor(Math.random()*chars.length)
+            );
 
     }
 
@@ -1416,182 +1438,272 @@ function randomString(length) {
 }
 
 
-function buyFCMobile() {
+function buyFCMobile(event){
 
-    const cardName =
-        document.getElementById(
-            "fcCardName"
-        ).value.trim();
+    if(event &&
+       typeof event.preventDefault==="function"){
 
-    const cardNumber =
-        document.getElementById(
-            "fcCardNumber"
-        ).value.trim();
+        event.preventDefault();
 
-    const cardExpiry =
-        document.getElementById(
-            "fcCardExpiry"
-        ).value.trim();
+    }
 
-    const cardCVV =
-        document.getElementById(
-            "fcCardCVV"
-        ).value.trim();
+    const buyer =
+        document.getElementById("fcBuyerName").value.trim();
+
+    const demoCard =
+        document.getElementById("fcDemoCard").value.trim();
+
+    const demoCode =
+        document.getElementById("fcDemoCode").value.trim();
 
     const error =
-        document.getElementById(
-            "fcError"
-        );
+        document.getElementById("fcError");
 
+    if(!buyer || !demoCard || !demoCode){
 
-    if (cardName === "") {
+        error.textContent =
+            "Vui lòng nhập đầy đủ thông tin!";
 
-        error.innerText =
-            "❌ Vui lòng nhập tên chủ thẻ!";
+        error.style.display =
+            "block";
 
-        error.style.display = "block";
-
-        return;
+        return false;
     }
 
+    if(!selectedFCOVR ||
+       !selectedFCPrice){
 
-    if (cardNumber === "") {
+        error.textContent =
+            "Vui lòng chọn tài khoản FC Mobile trước!";
 
-        error.innerText =
-            "❌ Vui lòng nhập số thẻ!";
+        error.style.display =
+            "block";
 
-        error.style.display = "block";
-
-        return;
+        return false;
     }
 
+    error.style.display =
+        "none";
 
-    if (cardExpiry === "") {
+    const username =
+        "FCM_"+randomString(8);
 
-        error.innerText =
-            "❌ Vui lòng nhập ngày hết hạn!";
+    const password =
+        randomString(12);
 
-        error.style.display = "block";
+    document.getElementById("fcPanel").style.display =
+        "none";
 
-        return;
-    }
+    document.getElementById("successText").innerHTML =
+        "Bạn đã nhận được tài khoản FC Mobile!<br><br>"+
+        "Tên đăng nhập: <b>"+username+"</b><br>"+
+        "Mật khẩu: <b>"+password+"</b>";
 
+    document.getElementById("accountSuccessInfo").textContent =
+        "FC Mobile OVR "+
+        selectedFCOVR+
+        " - "+
+        selectedFCPrice;
 
-    if (cardCVV === "") {
+    document.getElementById("successPage").style.display =
+        "block";
 
-        error.innerText =
-            "❌ Vui lòng nhập CVV!";
+    document.getElementById("successPage").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
 
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    error.style.display = "none";
-
-    showToast(
-        "Đang xử lý..."
-    );
-
-
-    setTimeout(function() {
-
-        const username =
-            "FCM_" +
-            randomString(8);
-
-        const password =
-            randomString(12);
-
-
-        document.getElementById(
-            "generatedUsername"
-        ).value = username;
-
-
-        document.getElementById(
-            "generatedPassword"
-        ).value = password;
-
-
-        document.getElementById(
-            "fcPanel"
-        ).style.display = "none";
-
-
-        document.getElementById(
-            "fcAccountPanel"
-        ).style.display = "block";
-
-
-        document.getElementById(
-            "fcAccountPanel"
-        ).scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
-
-        showToast(
-            "🎉 Mua tài khoản thành công!"
-        );
-
-    }, 1200);
+    return false;
 }
 
 
-/* =========================
-   CẬP NHẬT LƯỢT QUAY
-========================= */
+/* LIÊN QUÂN */
 
-function updateSpinCount() {
+function openLienQuanPurchase(type,price){
 
-    document.getElementById(
-        "spinCount"
-    ).innerText =
-        "Bạn còn " +
-        spinCount +
+    selectedLQType = type;
+    selectedLQPrice = price;
+
+    document.getElementById("selectedLienQuan").textContent =
+        "Liên Quân Mobile - "+
+        type+
+        " - "+
+        price;
+
+    document.getElementById("lqError").style.display =
+        "none";
+
+    document.getElementById("lienquanPanel").style.display =
+        "block";
+
+    document.getElementById("lienquanPanel").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+}
+
+
+function closeLienQuan(){
+
+    document.getElementById("lienquanPanel").style.display =
+        "none";
+
+}
+
+
+function buyLienQuan(){
+
+    const buyer =
+        document.getElementById("lqBuyerName").value.trim();
+
+    const card =
+        document.getElementById("lqDemoCard").value.trim();
+
+    const code =
+        document.getElementById("lqDemoCode").value.trim();
+
+    if(!buyer || !card || !code){
+
+        document.getElementById("lqError").style.display =
+            "block";
+
+        return;
+    }
+
+    document.getElementById("lqError").style.display =
+        "none";
+
+    document.getElementById("lienquanPanel").style.display =
+        "none";
+
+    document.getElementById("successText").textContent =
+        "Bạn đã nhận được tài khoản Liên Quân!";
+
+    document.getElementById("accountSuccessInfo").textContent =
+        "Liên Quân Mobile - "+
+        selectedLQType+
+        " - "+
+        selectedLQPrice;
+
+    document.getElementById("successPage").style.display =
+        "block";
+
+    document.getElementById("successPage").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+}
+
+
+/* STEAL AN EGG */
+
+function openStealEggPurchase(type,price){
+
+    selectedEggType = type;
+    selectedEggPrice = price;
+
+    document.getElementById("selectedStealEgg").textContent =
+        "Steal an Egg - "+
+        type+
+        " - "+
+        price;
+
+    document.getElementById("eggError").style.display =
+        "none";
+
+    document.getElementById("stealEggPanel").style.display =
+        "block";
+
+    document.getElementById("stealEggPanel").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+}
+
+
+function closeStealEgg(){
+
+    document.getElementById("stealEggPanel").style.display =
+        "none";
+
+}
+
+
+function buyStealEgg(){
+
+    const buyer =
+        document.getElementById("eggBuyerName").value.trim();
+
+    const card =
+        document.getElementById("eggDemoCard").value.trim();
+
+    const code =
+        document.getElementById("eggDemoCode").value.trim();
+
+    const error =
+        document.getElementById("eggError");
+
+    if(!buyer || !card || !code){
+
+        error.textContent =
+            "Vui lòng nhập đầy đủ thông tin!";
+
+        error.style.display =
+            "block";
+
+        return;
+    }
+
+    error.style.display =
+        "none";
+
+    document.getElementById("stealEggPanel").style.display =
+        "none";
+
+    document.getElementById("successText").textContent =
+        "Bạn đã mua tài khoản Steal an Egg thành công!";
+
+    document.getElementById("accountSuccessInfo").textContent =
+        "Steal an Egg - "+
+        selectedEggType+
+        " - "+
+        selectedEggPrice;
+
+    document.getElementById("successPage").style.display =
+        "block";
+
+    document.getElementById("successPage").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+}
+
+
+/* VÒNG QUAY */
+
+function updateSpinCount(){
+
+    document.getElementById("spinCount").textContent =
+        "Bạn còn "+
+        spinCount+
         " lượt quay";
-
-
-    document.getElementById(
-        "spinButton"
-    ).disabled =
-        spinCount <= 0;
 }
 
 
-/* =========================
-   QUAY
-========================= */
+function spinWheel(){
 
-function spinWheel() {
+    if(spinCount<=0){
 
-    if (spinCount <= 0) {
-
-        showToast(
-            "Bạn đã hết lượt quay! Hãy mua thêm lượt."
-        );
+        showToast("Bạn đã hết lượt quay!");
 
         return;
     }
-
 
     spinCount--;
 
     updateSpinCount();
 
-
-    const spinButton =
-        document.getElementById(
-            "spinButton"
-        );
-
-    spinButton.disabled = true;
-
-
-    const rewards = [
+    const rewards=[
         50,
         9999,
         125,
@@ -1599,430 +1711,249 @@ function spinWheel() {
         777
     ];
 
-
-    const randomIndex =
+    const index =
         Math.floor(
-            Math.random() *
-            rewards.length
+            Math.random()*rewards.length
         );
 
-
     wheelReward =
-        rewards[randomIndex];
+        rewards[index];
 
+    const rotation =
+        1440+
+        index*72+
+        Math.floor(
+            Math.random()*50
+        );
 
-    const extraRotation =
-        360 * 6 +
-        randomIndex * 72 +
-        36;
+    document.getElementById("wheel").style.transform =
+        "rotate("+rotation+"deg)";
 
+    setTimeout(function(){
 
-    document.getElementById(
-        "wheel"
-    ).style.transform =
-        "rotate(" +
-        extraRotation +
-        "deg)";
-
-
-    setTimeout(function() {
-
-        document.getElementById(
-            "wheelResult"
-        ).innerHTML =
-            "🎉 Chúc mừng! Bạn nhận được " +
-            wheelReward +
+        document.getElementById("wheelResult").textContent =
+            "🎉 Chúc mừng! Bạn nhận được "+
+            wheelReward+
             " Robux!";
-
 
         showRewardForm();
 
-    }, 4200);
+    },4100);
 }
 
 
-/* =========================
-   MUA LƯỢT QUAY
-========================= */
+function showRewardForm(){
 
-function openSpinPurchase() {
+    document.getElementById("rewardPanel").style.display =
+        "block";
 
-    document.getElementById(
-        "spinPurchasePanel"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "spinPaymentError"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "spinPurchasePanel"
-    ).scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-}
-
-
-function closeSpinPurchase() {
-
-    document.getElementById(
-        "spinPurchasePanel"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "spinCardName"
-    ).value = "";
-
-    document.getElementById(
-        "spinCardNumber"
-    ).value = "";
-
-    document.getElementById(
-        "spinCardExpiry"
-    ).value = "";
-
-    document.getElementById(
-        "spinCardCVV"
-    ).value = "";
-
-    document.getElementById(
-        "spinPaymentError"
-    ).style.display = "none";
-}
-
-
-function buySpin() {
-
-    const cardName =
-        document.getElementById(
-            "spinCardName"
-        ).value.trim();
-
-    const cardNumber =
-        document.getElementById(
-            "spinCardNumber"
-        ).value.trim();
-
-    const cardExpiry =
-        document.getElementById(
-            "spinCardExpiry"
-        ).value.trim();
-
-    const cardCVV =
-        document.getElementById(
-            "spinCardCVV"
-        ).value.trim();
-
-    const error =
-        document.getElementById(
-            "spinPaymentError"
-        );
-
-
-    if (cardName === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập tên chủ thẻ!";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (cardNumber === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập số thẻ!";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (cardExpiry === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập ngày hết hạn!";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (cardCVV === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập CVV!";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    error.style.display = "none";
-
-
-    showToast(
-        "Đang xử lý thanh toán 20.000đ..."
-    );
-
-
-    setTimeout(function() {
-
-        spinCount++;
-
-        updateSpinCount();
-
-        closeSpinPurchase();
-
-
-        showToast(
-            "🎉 Đã thêm 1 lượt quay!"
-        );
-
-    }, 1200);
-}
-
-
-/* =========================
-   FORM NHẬN ROBUX
-========================= */
-
-function showRewardForm() {
-
-    document.getElementById(
-        "rewardText"
-    ).innerHTML =
-        "🎁 Phần thưởng của bạn: " +
-        wheelReward +
+    document.getElementById("rewardInfo").textContent =
+        "Phần thưởng: "+
+        wheelReward+
         " Robux";
 
-
-    document.getElementById(
-        "rewardPanel"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "rewardPanel"
-    ).scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+    document.getElementById("rewardPanel").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
     });
 }
 
 
-function claimReward() {
+function claimReward(){
 
     const name =
-        document.getElementById(
-            "rewardRobloxName"
-        ).value.trim();
+        document.getElementById("rewardName").value.trim();
 
+    if(!name){
 
-    const error =
-        document.getElementById(
-            "rewardError"
-        );
-
-
-    if (name === "") {
-
-        error.innerText =
-            "❌ Vui lòng nhập tên Roblox!";
-
-        error.style.display = "block";
+        document.getElementById("rewardError").style.display =
+            "block";
 
         return;
     }
 
+    showRobuxSuccess(wheelReward);
+}
 
-    error.style.display = "none";
+
+/* MUA LƯỢT QUAY */
+
+function openSpinPurchase(){
+
+    document.getElementById("spinPurchasePanel").style.display =
+        "block";
+
+    document.getElementById("spinError").style.display =
+        "none";
+
+    document.getElementById("spinPurchasePanel").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+}
+
+
+function closeSpinPurchase(){
+
+    document.getElementById("spinPurchasePanel").style.display =
+        "none";
+}
+
+
+function buySpin(){
+
+    const buyer =
+        document.getElementById("spinBuyerName").value.trim();
+
+    const card =
+        document.getElementById("spinDemoCard").value.trim();
+
+    const code =
+        document.getElementById("spinDemoCode").value.trim();
+
+    if(!buyer || !card || !code){
+
+        document.getElementById("spinError").style.display =
+            "block";
+
+        return;
+    }
+
+    spinCount++;
+
+    updateSpinCount();
+
+    closeSpinPurchase();
 
     showToast(
-        "Đang xử lý..."
+        "🎉 Bạn đã nhận thêm 1 lượt quay!"
     );
-
-
-    setTimeout(function() {
-
-        showRobuxSuccess(
-            wheelReward
-        );
-
-    }, 1000);
 }
 
 
-/* =========================
-   THÀNH CÔNG ROBUX
-========================= */
+/* ROBUX SUCCESS */
 
-function showRobuxSuccess(amount) {
+function showRobuxSuccess(amount){
 
-    document.getElementById(
-        "mainPage"
-    ).style.display = "none";
+    document.getElementById("purchasePanel").style.display =
+        "none";
 
+    document.getElementById("rewardPanel").style.display =
+        "none";
 
-    document.getElementById(
-        "errorPage"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "successPage"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "successRobux"
-    ).innerText =
-        "Bạn đã nhận được " +
-        amount +
+    document.getElementById("successText").textContent =
+        "Bạn đã nhận được "+
+        amount+
         " Robux";
 
+    document.getElementById("accountSuccessInfo").textContent =
+        "";
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    document.getElementById("successPage").style.display =
+        "block";
+
+    document.getElementById("successPage").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
     });
 }
 
 
-/* =========================
-   TRANG CHỦ
-========================= */
+/* HOME */
 
-function goHome() {
+function goHome(){
 
-    document.getElementById(
-        "mainPage"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "successPage"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "errorPage"
-    ).style.display = "none";
-
+    document.getElementById("successPage").style.display =
+        "none";
 
     window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        top:0,
+        behavior:"smooth"
     });
 }
 
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
-function showToast(message) {
+function showToast(message){
 
     const toast =
-        document.getElementById(
-            "toast"
-        );
+        document.getElementById("toast");
 
-
-    toast.innerText =
+    toast.textContent =
         message;
-
 
     toast.style.display =
         "block";
 
-
-    setTimeout(function() {
+    setTimeout(function(){
 
         toast.style.display =
             "none";
 
-    }, 2500);
+    },2500);
 }
 
 
-/* =========================
-   ENTER
-========================= */
+/* PHÍM ENTER */
 
 document.addEventListener(
     "keydown",
-    function(event) {
+    function(event){
 
-        if (event.key !== "Enter") {
+        if(event.key!=="Enter")
             return;
+
+        const fc =
+            document.getElementById("fcPanel");
+
+        const robux =
+            document.getElementById("purchasePanel");
+
+        const lq =
+            document.getElementById("lienquanPanel");
+
+        const egg =
+            document.getElementById("stealEggPanel");
+
+        const reward =
+            document.getElementById("rewardPanel");
+
+        const spin =
+            document.getElementById("spinPurchasePanel");
+
+
+        if(fc.style.display==="block"){
+
+            buyFCMobile(event);
+
         }
 
-
-        const purchasePanel =
-            document.getElementById(
-                "purchasePanel"
-            );
-
-
-        const fcPanel =
-            document.getElementById(
-                "fcPanel"
-            );
-
-
-        const rewardPanel =
-            document.getElementById(
-                "rewardPanel"
-            );
-
-
-        const spinPurchasePanel =
-            document.getElementById(
-                "spinPurchasePanel"
-            );
-
-
-        if (
-            purchasePanel.style.display ===
-            "block"
-        ) {
+        else if(robux.style.display==="block"){
 
             confirmPurchase();
 
         }
 
-        else if (
-            fcPanel.style.display ===
-            "block"
-        ) {
+        else if(lq.style.display==="block"){
 
-            buyFCMobile();
+            buyLienQuan();
 
         }
 
-        else if (
-            rewardPanel.style.display ===
-            "block"
-        ) {
+        else if(egg.style.display==="block"){
+
+            buyStealEgg();
+
+        }
+
+        else if(reward.style.display==="block"){
 
             claimReward();
 
         }
 
-        else if (
-            spinPurchasePanel.style.display ===
-            "block"
-        ) {
+        else if(spin.style.display==="block"){
 
             buySpin();
 
@@ -2031,8 +1962,6 @@ document.addEventListener(
     }
 );
 
-
-/* Hiển thị số lượt ngay khi mở trang */
 
 updateSpinCount();
 
