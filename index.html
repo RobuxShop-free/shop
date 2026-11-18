@@ -7,153 +7,264 @@
 <title>ShopRobuxLuaDao - Key System</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#fff;color:#26352b;min-height:100vh}
-body:before,body:after{content:"";position:fixed;width:500px;height:500px;border:2px solid #d9f4df;border-radius:50%;z-index:-1;pointer-events:none}
+body{
+ margin:0;font-family:Arial,sans-serif;background:white;color:#26352b;
+ min-height:100vh
+}
+body:before,body:after{
+ content:"";position:fixed;width:500px;height:500px;
+ border:2px solid #d9f4df;border-radius:50%;z-index:-1;
+ pointer-events:none
+}
 body:before{top:-300px;left:-180px}
 body:after{bottom:-350px;right:-180px}
-header{padding:20px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5f4e8}
+header{
+ padding:20px 7%;display:flex;justify-content:space-between;
+ align-items:center;border-bottom:1px solid #e5f4e8
+}
 .logo{font-size:23px;font-weight:bold;color:#39a85b}
-button{border:0;border-radius:10px;padding:13px 22px;background:#55c878;color:white;font-weight:bold;cursor:pointer}
+button{
+ border:0;border-radius:10px;padding:13px 22px;
+ background:#55c878;color:white;font-weight:bold;cursor:pointer
+}
 button:hover{background:#36a95c}
-main{max-width:650px;margin:65px auto;padding:20px}
-.panel{background:white;border:1px solid #d9f0df;border-radius:18px;padding:30px;box-shadow:0 8px 30px #b5d9bf30}
+main{max-width:650px;margin:55px auto;padding:20px}
+.panel{
+ background:white;border:1px solid #d9f0df;border-radius:18px;
+ padding:30px;box-shadow:0 8px 30px #b5d9bf30
+}
 h1{color:#32a85a;text-align:center}
 p{text-align:center;color:#647368;line-height:1.6}
-input[type="text"],input[type="number"]{width:100%;padding:14px;margin:12px 0;border:1px solid #cfe6d4;border-radius:9px;font-size:16px}
-.robot{border:1px solid #ccc;background:#fafafa;padding:18px;display:flex;align-items:center;gap:13px;margin:25px 0;border-radius:5px;cursor:pointer}
+h3{margin-top:25px}
+input[type="text"],input[type="number"]{
+ width:100%;padding:14px;margin:12px 0;
+ border:1px solid #cfe6d4;border-radius:9px;font-size:16px
+}
+.robot{
+ border:1px solid #ccc;background:#fafafa;padding:18px;
+ display:flex;align-items:center;gap:13px;margin:20px 0;
+ border-radius:5px;cursor:pointer
+}
 .robot input{width:22px;height:22px;margin:0}
 .robot span{font-size:15px;color:#333}
 .page{display:none}
 .page.active{display:block}
-.script{background:#17231c;color:#b7f5c8;padding:18px;border-radius:10px;overflow-wrap:anywhere;line-height:1.6;font-size:13px}
+.script{
+ background:#17231c;color:#b7f5c8;padding:18px;
+ border-radius:10px;overflow-wrap:anywhere;line-height:1.6;
+ font-size:13px
+}
 .small{font-size:13px;color:#849188}
 .key-buttons{display:grid;gap:12px}
 .key-buttons button{width:100%}
-.secondary{background:#7e9a86}
+.secondary{background:#81958a}
+.key-display{
+ background:#effaf1;border:1px dashed #55c878;
+ padding:18px;border-radius:10px;text-align:center;
+ font-size:20px;font-weight:bold;color:#29954a;margin:20px 0
+}
+.download{
+ display:block;text-align:center;text-decoration:none;
+ background:#55c878;color:white;padding:15px;
+ border-radius:10px;font-weight:bold;margin-top:15px
+}
 </style>
 </head>
 <body>
+
 <header>
-  <div class="logo">ShopRobuxLuaDao</div>
-  <button onclick="showPage('home')">Trang chủ</button>
+ <div class="logo">ShopRobuxLuaDao</div>
+ <button onclick="showPage('home')">Trang chủ</button>
 </header>
 
 <main>
+
 <section id="home" class="page active">
-  <div class="panel">
-    <h1>KEY SYSTEM</h1>
-    <p>Chọn hệ thống Key bạn muốn sử dụng.</p>
-    <div class="key-buttons">
-      <button onclick="startKey('lua')">LẤY KEY LUAHOOK</button>
-      <button onclick="startKey('madium')">LẤY KEY 2</button>
-    </div>
+ <div class="panel">
+  <h1>KEY SYSTEM</h1>
+  <p>Chọn hệ thống Key bạn muốn sử dụng.</p>
+  <div class="key-buttons">
+   <button onclick="showPage('tasksLua')">LẤY KEY LUAHOOK</button>
+   <button onclick="showPage('tasksMadium')">LẤY KEY 2</button>
+   <button onclick="showPage('tasksAdmin')">LẤY KEY ADMIN</button>
   </div>
+ </div>
 </section>
 
+<!-- LUAHOOK -->
 <section id="tasksLua" class="page">
-  <div class="panel">
-    <h1>LuaHook - Xác minh</h1>
-    <p>Hoàn thành các nhiệm vụ bên dưới.</p>
-    <h3>Nhiệm vụ 1: Xác minh robot</h3>
-    <label class="robot"><input type="checkbox" id="robotLua"><span>I am not robot</span></label>
-    <h3>Nhiệm vụ 2: Giải phép tính</h3>
-    <p>1 + 1 = ?</p>
-    <input id="answerLua" type="number" placeholder="Nhập kết quả">
-    <button style="width:100%" onclick="verifyLua()">XÁC NHẬN</button>
-    <p id="errorLua" style="color:#e34d4d"></p>
-  </div>
-</section>
-
-<section id="tasksMadium" class="page">
-  <div class="panel">
-    <h1>Key System 2</h1>
-    <p>Hoàn thành tất cả nhiệm vụ để tiếp tục.</p>
-
-    <h3>Nhiệm vụ 1: Xác minh robot</h3>
-    <label class="robot"><input type="checkbox" id="robotMadium"><span>I am not robot</span></label>
-
-    <h3>Nhiệm vụ 2: Giải phép tính</h3>
-    <p>120021301 × 1203102313 = ?</p>
-    <input id="answerMadium" type="number" placeholder="Nhập đáp án">
-
-    <h3>Nhiệm vụ 3: Hãy nhập tên của bạn</h3>
-    <input id="nameMadium" type="text" placeholder="Nhập tên của bạn">
-
-    <button style="width:100%" onclick="verifyMadium()">HOÀN THÀNH</button>
-    <p id="errorMadium" style="color:#e34d4d"></p>
-  </div>
+ <div class="panel">
+  <h1>LuaHook - Xác minh</h1>
+  <p>Hoàn thành các nhiệm vụ bên dưới.</p>
+  <h3>Nhiệm vụ 1: Xác minh robot</h3>
+  <label class="robot">
+   <input type="checkbox" id="robotLua">
+   <span>I am not robot</span>
+  </label>
+  <h3>Nhiệm vụ 2: Giải phép tính</h3>
+  <p>1 + 1 = ?</p>
+  <input id="answerLua" type="number" placeholder="Nhập kết quả">
+  <button style="width:100%" onclick="verifyLua()">XÁC NHẬN</button>
+  <p id="errorLua" style="color:#e34d4d"></p>
+ </div>
 </section>
 
 <section id="resultLua" class="page">
-  <div class="panel">
-    <h1>Hoàn thành nhiệm vụ!</h1>
-    <p>LuaHook Script</p>
-    <div class="script" id="scriptText"></div>
-    <button style="width:100%;margin-top:15px" onclick="copyScript()">SAO CHÉP SCRIPT</button>
-    <p id="copied" class="small"></p>
-    <button class="secondary" style="width:100%;margin-top:10px" onclick="showPage('home')">QUAY VỀ</button>
-  </div>
+ <div class="panel">
+  <h1>Hoàn thành nhiệm vụ!</h1>
+  <p>LuaHook Script</p>
+  <div class="script" id="scriptText"></div>
+  <button style="width:100%;margin-top:15px" onclick="copyScript()">SAO CHÉP SCRIPT</button>
+  <p id="copied" class="small"></p>
+  <button class="secondary" style="width:100%" onclick="showPage('home')">QUAY VỀ</button>
+ </div>
+</section>
+
+<!-- MADIUM -->
+<section id="tasksMadium" class="page">
+ <div class="panel">
+  <h1>Key System 2</h1>
+  <p>Hoàn thành tất cả nhiệm vụ để tiếp tục.</p>
+  <h3>Nhiệm vụ 1: Xác minh robot</h3>
+  <label class="robot">
+   <input type="checkbox" id="robotMadium">
+   <span>I am not robot</span>
+  </label>
+  <h3>Nhiệm vụ 2: Giải phép tính</h3>
+  <p>120021301 × 1203102313 = ?</p>
+  <input id="answerMadium" type="number" placeholder="Nhập đáp án">
+  <h3>Nhiệm vụ 3: Hãy nhập tên của bạn</h3>
+  <input id="nameMadium" type="text" placeholder="Nhập tên của bạn">
+  <button style="width:100%" onclick="verifyMadium()">HOÀN THÀNH</button>
+  <p id="errorMadium" style="color:#e34d4d"></p>
+ </div>
 </section>
 
 <section id="resultMadium" class="page">
-  <div class="panel">
-    <h1>Hoàn thành nhiệm vụ!</h1>
-    <p>Bạn đã hoàn thành Key System 2.</p>
-    <p>Nhấn nút bên dưới để truy cập website:</p>
-    <button style="width:100%" onclick="window.open('https://madium.org/','_blank')">TRUY CẬP MADium</button>
-    <p><a href="https://madium.org/" target="_blank" rel="noopener">https://madium.org/</a></p>
-    <button class="secondary" style="width:100%" onclick="showPage('home')">QUAY VỀ</button>
-  </div>
+ <div class="panel">
+  <h1>Hoàn thành nhiệm vụ!</h1>
+  <p>Nhấn nút bên dưới để truy cập website:</p>
+  <a class="download" href="https://madium.org/" target="_blank" rel="noopener">TRUY CẬP MADIUM</a>
+  <button class="secondary" style="width:100%;margin-top:15px" onclick="showPage('home')">QUAY VỀ</button>
+ </div>
 </section>
+
+<!-- ADMIN -->
+<section id="tasksAdmin" class="page">
+ <div class="panel">
+  <h1>Script Admin</h1>
+  <p>Hoàn thành các nhiệm vụ để lấy Key Admin.</p>
+
+  <h3>Nhiệm vụ 1: Xác minh robot</h3>
+  <label class="robot">
+   <input type="checkbox" id="robotAdmin">
+   <span>I am not robot</span>
+  </label>
+
+  <h3>Nhiệm vụ 2: Giải phép tính</h3>
+  <p>324548394 × 289373534 = ?</p>
+  <input id="answerAdmin" type="number" placeholder="Nhập đáp án">
+
+  <button style="width:100%" onclick="verifyAdmin()">HOÀN THÀNH NHIỆM VỤ</button>
+  <p id="errorAdmin" style="color:#e34d4d"></p>
+ </div>
+</section>
+
+<section id="adminKey" class="page">
+ <div class="panel">
+  <h1>Bạn đã nhận được Key!</h1>
+  <p>Đây là Key của bạn:</p>
+  <div class="key-display">Hùng Anh FB</div>
+
+  <h3>SĂN KEY</h3>
+  <p>Nhập Key phía trên để mở khóa đường dẫn.</p>
+  <input id="adminKeyInput" type="text" placeholder="Nhập Key tại đây">
+
+  <button style="width:100%" onclick="verifyAdminKey()">XÁC NHẬN KEY</button>
+  <p id="adminKeyError" style="color:#e34d4d"></p>
+ </div>
+</section>
+
+<section id="adminDownload" class="page">
+ <div class="panel">
+  <h1>Đã mở khóa!</h1>
+  <p>Hãy tải file script tại đường dẫn bên dưới.</p>
+  <a class="download"
+     href="https://www.mediafire.com/file/32rsaq4eglojyhq/stressv3.bat/file"
+     target="_blank" rel="noopener">
+     TẢI SCRIPT ADMIN
+  </a>
+  <p class="small">Hãy kiểm tra file trước khi mở hoặc chạy trên máy tính.</p>
+  <button class="secondary" style="width:100%" onclick="showPage('home')">QUAY VỀ TRANG CHỦ</button>
+ </div>
+</section>
+
 </main>
 
 <script>
-const script='loadstring(game:HttpGet("https://raw.githubusercontent.com/elucidwtf/luahookfree/refs/heads/main/loader.lua"))()';
+const luaScript =
+'loadstring(game:HttpGet("https://raw.githubusercontent.com/elucidwtf/luahookfree/refs/heads/main/loader.lua"))()';
 
 function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-function startKey(type){
-  if(type==='lua') showPage('tasksLua');
-  else showPage('tasksMadium');
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
 }
 
 function verifyLua(){
-  const robot=document.getElementById('robotLua').checked;
-  const answer=document.getElementById('answerLua').value;
-  const error=document.getElementById('errorLua');
-
-  if(!robot){error.textContent='Vui lòng tích vào ô I am not robot!';return;}
-  if(answer!=='3'){error.textContent='Đáp án chưa chính xác!';return;}
-
-  error.textContent='';
-  document.getElementById('scriptText').textContent=script;
-  showPage('resultLua');
+ const robot=document.getElementById('robotLua').checked;
+ const answer=document.getElementById('answerLua').value;
+ const error=document.getElementById('errorLua');
+ if(!robot){error.textContent='Vui lòng tích vào ô I am not robot!';return;}
+ if(answer!=='3'){error.textContent='Đáp án chưa chính xác!';return;}
+ error.textContent='';
+ document.getElementById('scriptText').textContent=luaScript;
+ showPage('resultLua');
 }
 
 function verifyMadium(){
-  const robot=document.getElementById('robotMadium').checked;
-  const answer=document.getElementById('answerMadium').value.trim();
-  const name=document.getElementById('nameMadium').value.trim().toLowerCase();
-  const error=document.getElementById('errorMadium');
+ const robot=document.getElementById('robotMadium').checked;
+ const answer=document.getElementById('answerMadium').value.trim();
+ const name=document.getElementById('nameMadium').value.trim().toLowerCase();
+ const error=document.getElementById('errorMadium');
+ if(!robot){error.textContent='Vui lòng tích vào ô I am not robot!';return;}
+ if(answer!=='67'){error.textContent='Đáp án chưa chính xác!';return;}
+ if(name!=='vô danh'){error.textContent='Tên chưa chính xác! Hãy nhập vô danh.';return;}
+ error.textContent='';
+ showPage('resultMadium');
+}
 
-  if(!robot){error.textContent='Vui lòng tích vào ô I am not robot!';return;}
-  if(answer!=='67'){error.textContent='Đáp án chưa chính xác!';return;}
-  if(name!=='vô danh'){error.textContent='Tên chưa chính xác! Hãy nhập vô danh.';return;}
+function verifyAdmin(){
+ const robot=document.getElementById('robotAdmin').checked;
+ const answer=document.getElementById('answerAdmin').value.trim();
+ const error=document.getElementById('errorAdmin');
 
-  error.textContent='';
-  showPage('resultMadium');
+ if(!robot){error.textContent='Vui lòng tích vào ô I am not robot!';return;}
+ if(answer!=='1'){error.textContent='Đáp án chưa chính xác!';return;}
+
+ error.textContent='';
+ showPage('adminKey');
+}
+
+function verifyAdminKey(){
+ const key=document.getElementById('adminKeyInput').value.trim();
+ const error=document.getElementById('adminKeyError');
+
+ if(key!=='Hùng Anh FB'){
+  error.textContent='Key không chính xác! Hãy thử lại.';
+  return;
+ }
+
+ error.textContent='';
+ showPage('adminDownload');
 }
 
 async function copyScript(){
-  try{
-    await navigator.clipboard.writeText(script);
-    document.getElementById('copied').textContent='Đã sao chép script!';
-  }catch(e){
-    document.getElementById('copied').textContent='Không thể tự sao chép. Hãy sao chép đoạn mã bên trên.';
-  }
+ try{
+  await navigator.clipboard.writeText(luaScript);
+  document.getElementById('copied').textContent='Đã sao chép script!';
+ }catch(e){
+  document.getElementById('copied').textContent='Không thể tự sao chép. Hãy sao chép đoạn mã bên trên.';
+ }
 }
 </script>
 </body>
